@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Musculação | Academia Bem-Estar</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg" aria-label="Principal">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="img/logo.png" alt="Logotipo da Academia Bem-Estar" width="40" height="40" class="d-inline-block align-text-top">
+          Academia Bem-Estar
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-principal"
+                aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir e fechar o menu de navegação">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu-principal">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+            <li class="nav-item"><a class="nav-link active" href="musculacao.html" aria-current="page">Musculação</a></li>
+            <li class="nav-item"><a class="nav-link" href="luta.html">Luta</a></li>
+            <li class="nav-item"><a class="nav-link" href="danca.html">Dança</a></li>
+            <li class="nav-item"><a class="nav-link" href="horarios.html">Horários</a></li>
+            <li class="nav-item"><a class="nav-link" href="cadastro.html">Cadastro</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section aria-labelledby="titulo-musculacao">
+      <div class="container">
+        <h1 id="titulo-musculacao">Musculação</h1>
+        <p>
+          A musculação é a modalidade indicada para quem quer ganhar força, melhorar a postura e cuidar da saúde
+          de forma progressiva. Os treinos são montados de acordo com o objetivo de cada aluno.
+        </p>
+
+        <!-- Abas com o conteúdo da modalidade e a pré-avaliação profissional -->
+        <ul class="nav nav-tabs" id="abas-musculacao" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="aba-sobre" data-bs-toggle="tab" data-bs-target="#painel-sobre"
+                    type="button" role="tab" aria-controls="painel-sobre" aria-selected="true">Sobre</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="aba-pre-avaliacao" data-bs-toggle="tab" data-bs-target="#painel-pre-avaliacao"
+                    type="button" role="tab" aria-controls="painel-pre-avaliacao" aria-selected="false">Pré-avaliação com profissional</button>
+          </li>
+        </ul>
+
+        <div class="tab-content" id="conteudo-abas-musculacao">
+          <!-- Aba "Sobre" -->
+          <div class="tab-pane fade show active" id="painel-sobre" role="tabpanel" aria-labelledby="aba-sobre" tabindex="0">
+            <article>
+              <h2>Como funcionam os treinos</h2>
+              <p>
+                Cada aluno recebe uma ficha de treino própria, revisada a cada ciclo de oito semanas. Os exercícios
+                combinam força, resistência e mobilidade, sempre respeitando o ritmo de cada pessoa.
+              </p>
+
+              <figure>
+                <img src="img/musculacao.jpg" alt="Aluno treinando musculação com halteres na sala de pesos" class="img-fluid">
+                <figcaption>Sala de musculação com equipamentos para treino de força.</figcaption>
+              </figure>
+
+              <h3>Benefícios</h3>
+              <ul>
+                <li>Aumento da força e da massa muscular.</li>
+                <li>Melhora da postura e da saúde das articulações.</li>
+                <li>Redução do estresse e melhora do sono.</li>
+                <li>Auxílio no controle do peso e da pressão arterial.</li>
+              </ul>
+
+              <h3>Para quem é indicada</h3>
+              <p>
+                A modalidade atende iniciantes, alunos em retorno após lesão e praticantes avançados. Não é necessário
+                ter experiência prévia: o primeiro mês é dedicado à adaptação e à técnica correta dos movimentos.
+              </p>
+            </article>
+          </div>
+
+          <!-- Aba "Pré-avaliação com profissional" -->
+          <div class="tab-pane fade" id="painel-pre-avaliacao" role="tabpanel" aria-labelledby="aba-pre-avaliacao" tabindex="0">
+            <article>
+              <h2>Pré-avaliação com profissional</h2>
+              <p>
+                Antes de iniciar a musculação, todo aluno passa por uma pré-avaliação com um profissional de educação
+                física. O objetivo é conhecer o histórico de saúde e separar os tipos de aluno, definindo o treino mais
+                adequado para cada caso.
+              </p>
+
+              <figure>
+                <img src="img/pre-avaliacao.jpg" alt="Profissional avaliando um aluno antes do início do treino" class="img-fluid">
+                <figcaption>Pré-avaliação feita por profissional de educação física.</figcaption>
+              </figure>
+
+              <h3>Etapas da pré-avaliação</h3>
+              <ol>
+                <li>Entrevista sobre histórico de saúde e objetivos.</li>
+                <li>Medição de peso, altura e composição corporal.</li>
+                <li>Testes simples de mobilidade e resistência.</li>
+                <li>Definição do tipo de aluno e montagem da ficha de treino.</li>
+              </ol>
+
+              <h3>Tipos de aluno</h3>
+              <dl>
+                <dt>Iniciante</dt>
+                <dd>Nunca treinou ou está retornando após um longo período parado.</dd>
+                <dt>Intermediário</dt>
+                <dd>Já treina com regularidade e domina a técnica dos exercícios básicos.</dd>
+                <dt>Avançado</dt>
+                <dd>Treina há mais de um ano e busca objetivos específicos de desempenho.</dd>
+              </dl>
+
+              <p><a class="btn btn-principal" href="cadastro.html" role="button">Agendar minha pré-avaliação</a></p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <section class="col-md-4" aria-labelledby="rodape-contato">
+          <h2 id="rodape-contato">Contato</h2>
+          <address>
+            Rua das Flores, 123 — Centro<br>
+            Telefone: <a href="tel:+5511999999999">(11) 99999-9999</a><br>
+            E-mail: <a href="mailto:contato@academiabemestar.com.br">contato@academiabemestar.com.br</a>
+          </address>
+        </section>
+
+        <nav class="col-md-4" aria-labelledby="rodape-navegacao">
+          <h2 id="rodape-navegacao">Navegação</h2>
+          <ul class="list-unstyled">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="musculacao.html">Musculação</a></li>
+            <li><a href="luta.html">Luta (Taekwondo)</a></li>
+            <li><a href="danca.html">Dança (Fit Dance)</a></li>
+            <li><a href="horarios.html">Horários</a></li>
+            <li><a href="cadastro.html">Cadastro</a></li>
+          </ul>
+        </nav>
+
+        <section class="col-md-4" aria-labelledby="rodape-funcionamento">
+          <h2 id="rodape-funcionamento">Funcionamento</h2>
+          <p>Segunda a sexta, das 6h às 22h</p>
+          <p>Sábados, das 8h às 13h</p>
+          <p>Aulas de bem-estar para todos os níveis.</p>
+        </section>
+      </div>
+      <p class="text-center">&copy; 2026 Academia Bem-Estar — Projeto acadêmico da disciplina SPODWE1 (BSI/IFSP).</p>
+    </div>
+  </footer>
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+# Arquivos de sistema
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Pacotes de entrega (zip/rar enviados pelo Moodle)
+*.zip
+*.rar
+*.7z
+
+# Editores e IDEs
+.vscode/
+.idea/
+*.swp
+
+# Dependências de ferramentas locais (não usadas no site)
+node_modules/
