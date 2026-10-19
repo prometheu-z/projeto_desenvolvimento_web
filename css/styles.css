@@ -7,9 +7,9 @@
  * Sem CSS inline no HTML e sem CDN: todo o estilo próprio fica aqui.
  *
  * Resumo dos tipos de seletor usados:
- *   tag: 2, 14, 20 | agrupamento: 3, 11 | classe: 4, 8, 9, 12, 18, 19
- *   ID: 10, 11 | descendente: 5, 6, 7, 11, 13, 15 | filho (>) e universal (*): 16
- *   atributo: 15, 17 | pseudoclasse: 1, 5, 7, 16 | pseudoelemento: 17, 19
+ *   tag: 2, 14, 20 | agrupamento: 3, 10, 11 | classe: 4, 8, 9, 12, 18, 19
+ *   ID: 11 | descendente: 5, 6, 7, 10, 11, 13, 15 | filho (>) e universal (*): 16
+ *   atributo: 15, 17 | pseudoclasse: 1, 7, 16 | pseudoelemento: 17, 19
  *
  * Paleta (identidade visual): azul-escuro #0B1C2C, verde-esmeralda #1A7A5C,
  * laranja queimado #E85D04, cinza claro #F4F6F8, texto #1F2937 / #4B5563,
@@ -52,11 +52,12 @@ h3 {
   text-shadow: none;
 }
 
-/* 04 — Seletor de classe: .navbar (fundo branco sólido, borda e sombra cinza sutil) */
+/* 04 — Seletor de classe: .navbar (fundo branco sólido, borda e sombra cinza sutil; hover dos links via variável) */
 .navbar {
   --bs-navbar-brand-color: #0B1C2C;
   --bs-navbar-brand-hover-color: #0B1C2C;
   --bs-navbar-color: #4B5563;
+  --bs-navbar-hover-color: #1A7A5C;
   --bs-navbar-active-color: #0B1C2C;
   background-color: #FFFFFF;
   border-bottom: 1px solid var(--borda);
@@ -64,9 +65,12 @@ h3 {
   font-weight: 500;
 }
 
-/* 05 — Descendente + pseudoclasse :hover: links do menu */
-.navbar-nav .nav-link:hover {
-  color: var(--esmeralda);
+/* 05 — Seletor descendente (classe + tag): .navbar-brand img (logo com altura máxima de 48px) */
+.navbar-brand img {
+  max-height: 48px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
 
 /* 06 — Seletor descendente: main section (espaço em branco entre seções) */
@@ -79,17 +83,22 @@ main section:nth-of-type(even) {
   background-color: var(--fundo-secao);
 }
 
-/* 08 — Seletor de classe: .hero (foto + overlay escuro leve + texto branco) */
+/* 08 — Seletor de classe: .hero (foto + overlay escuro leve; 280px no mobile a 420px no desktop) */
 .hero {
   --bs-heading-color: #FFFFFF;
   background: linear-gradient(rgba(11, 28, 44, 0.65), rgba(11, 28, 44, 0.65)),
-              url("../img/hero-academia.jpg") center / cover no-repeat;
+              url("../img/heroacademia.jpg") center / cover no-repeat;
   color: #FFFFFF;
-  padding: 6rem 0;
+  display: flex;
+  align-items: center;
+  min-height: clamp(280px, 40vw, 420px);
+  padding: 3rem 0;
 }
 
-/* 09 — Seletor de classe: .card-modalidade (fundo branco, borda cinza, sombra leve) */
+/* 09 — Seletor de classe: .card-modalidade (card branco; define altura e sombra das imagens internas) */
 .card-modalidade {
+  --altura-img: 220px;
+  --sombra-img: none;
   height: 100%;
   padding: 1.25rem;
   background-color: #FFFFFF;
@@ -98,11 +107,19 @@ main section:nth-of-type(even) {
   box-shadow: 0 1px 3px rgba(31, 41, 55, 0.12);
 }
 
-/* 10 — Seletor de ID: título da página de horários */
-#titulo-horarios {
-  display: inline-block;
-  padding-bottom: 0.5rem;
-  border-bottom: 3px solid var(--esmeralda);
+/* 10 — Agrupamento de seletores descendentes: .card-modalidade img, figure img (padrão de todas as imagens) */
+.card-modalidade img,
+figure img {
+  display: block;
+  width: 100%;
+  height: var(--altura-img, auto);
+  max-height: 380px;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: center;
+  margin-bottom: 0.75rem;
+  border-radius: 6px;
+  box-shadow: var(--sombra-img, 0 1px 3px rgba(31, 41, 55, 0.12));
 }
 
 /* 11 — Agrupamento de seletores (ID + descendente): #tabela-horarios th, #tabela-horarios td
