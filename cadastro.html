@@ -42,8 +42,149 @@
           indicados e a validação é feita automaticamente antes do envio.
         </p>
 
-        <!-- O formulário geral de cadastro (12 campos), conforme a seção 5.5 do RFC,
-             será montado aqui na meta G4. O <dialog> de resumo também entra nesta etapa. -->
+        <!-- Formulário geral de cadastro (12 campos), conforme a seção 5.5 do RFC (meta G4).
+             A validação é feita por JavaScript na Fase 2, por isso o atributo novalidate. -->
+        <form id="form-cadastro" novalidate>
+          <!-- 1. Dados pessoais: nome, e-mail, telefone e data de nascimento -->
+          <fieldset class="mb-4">
+            <legend>Dados pessoais</legend>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="nome" class="form-label">Nome completo</label>
+                <input type="text" class="form-control" id="nome" name="nome"
+                       minlength="3" autocomplete="name" placeholder="Ex.: Maria Silva" required>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="email" class="form-label">E-mail</label>
+                <input type="email" class="form-control" id="email" name="email"
+                       autocomplete="email" placeholder="nome@exemplo.com" required>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="telefone" class="form-label">Telefone</label>
+                <input type="tel" class="form-control" id="telefone" name="telefone"
+                       pattern="[\(\)0-9\s\-]{10,}" autocomplete="tel" placeholder="(11) 99999-9999" required>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="nascimento" class="form-label">Data de nascimento</label>
+                <input type="date" class="form-control" id="nascimento" name="nascimento" required>
+                <!-- A idade mínima (questão em aberto na seção 8 do RFC) é validada por JavaScript na Fase 2. -->
+                <p class="form-text">A idade mínima é definida pela academia.</p>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- 2. Dados de acesso -->
+          <fieldset class="mb-4">
+            <legend>Dados de acesso</legend>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="senha" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="senha" name="senha"
+                       minlength="8" autocomplete="new-password" required>
+                <p class="form-text">Mínimo de 8 caracteres, com pelo menos uma letra e um número.</p>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- 3. Modalidade, plano e horários preferidos -->
+          <fieldset class="mb-4">
+            <legend>Modalidade e plano</legend>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="atividade" class="form-label">Atividade</label>
+                <select class="form-select" id="atividade" name="atividade" required>
+                  <option value="" selected disabled>Escolha uma atividade</option>
+                  <option value="musculacao">Musculação</option>
+                  <option value="taekwondo">Taekwondo</option>
+                  <option value="fit-dance">Fit Dance</option>
+                </select>
+              </div>
+
+              <fieldset class="col-md-6 mb-3">
+                <legend class="form-label fs-6">Plano</legend>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="plano" id="plano-mensal" value="mensal" required>
+                  <label class="form-check-label" for="plano-mensal">Mensal</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="plano" id="plano-trimestral" value="trimestral">
+                  <label class="form-check-label" for="plano-trimestral">Trimestral</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="plano" id="plano-anual" value="anual">
+                  <label class="form-check-label" for="plano-anual">Anual</label>
+                </div>
+              </fieldset>
+            </div>
+
+            <fieldset class="mb-3">
+              <legend class="form-label fs-6">Horários preferidos</legend>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="horarios" id="horario-manha" value="manha">
+                <label class="form-check-label" for="horario-manha">Manhã</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="horarios" id="horario-tarde" value="tarde">
+                <label class="form-check-label" for="horario-tarde">Tarde</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="horarios" id="horario-noite" value="noite">
+                <label class="form-check-label" for="horario-noite">Noite</label>
+              </div>
+            </fieldset>
+          </fieldset>
+
+          <!-- 4. Perfil do aluno e observações -->
+          <fieldset class="mb-4">
+            <legend>Perfil e observações</legend>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="experiencia" class="form-label">Nível de experiência (1 a 5)</label>
+                <input type="range" class="form-range" id="experiencia" name="experiencia"
+                       min="1" max="5" step="1" value="3" required>
+                <p class="form-text">1 = nenhuma experiência; 5 = muita experiência.</p>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="peso" class="form-label">Peso (kg) <span class="text-muted">— opcional</span></label>
+                <input type="number" class="form-control" id="peso" name="peso"
+                       min="30" max="300" step="0.1" inputmode="decimal" placeholder="Ex.: 72.5">
+              </div>
+
+              <div class="col-12 mb-3">
+                <label for="observacoes" class="form-label">Observações <span class="text-muted">— opcional</span></label>
+                <textarea class="form-control" id="observacoes" name="observacoes" rows="3" maxlength="300"
+                          placeholder="Conte um pouco sobre seus objetivos ou restrições de saúde."></textarea>
+                <p class="form-text">Até 300 caracteres.</p>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- 5. Termos e envio -->
+          <fieldset class="mb-4">
+            <legend>Confirmação</legend>
+
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" id="termos" name="termos" required>
+              <label class="form-check-label" for="termos">
+                Li e concordo com os termos de uso e com a política de privacidade da academia.
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-principal">Enviar cadastro</button>
+          </fieldset>
+        </form>
+
+        <!-- Diálogo de resumo do cadastro. O conteúdo é montado pelo JavaScript
+             na Fase 2 (função exibirResumo, meta G8), por isso começa vazio. -->
+        <dialog id="dialogo-resumo"></dialog>
       </div>
     </section>
   </main>

@@ -18,7 +18,7 @@ projeto_desenvolvimento_web/
 ├── luta.html           Descrição, benefícios, níveis/faixas e imagens
 ├── danca.html          Descrição, benefícios e imagens
 ├── horarios.html       Grade de aulas (em construção — meta L5)
-├── cadastro.html       Formulário geral de cadastro (em construção — meta G4)
+├── cadastro.html       Formulário geral de cadastro (12 campos — meta G4)
 ├── css/
 │   ├── bootstrap.min.css   Bootstrap 5.3.3 (local, sem CDN)
 │   └── styles.css          CSS próprio (meta L3)
