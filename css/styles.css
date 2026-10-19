@@ -1,12 +1,186 @@
 /*
- * styles.css
+ * styles.css — Academia Bem-Estar
  * -------------------------------------------------------------------------
- * Folha de estilos própria do projeto (Academia Bem-Estar).
+ * Metas L1 + L3: identidade visual aplicada em exatamente 20 regras CSS
+ * (contagem comentada em cada regra).
+ * Carregado DEPOIS do bootstrap.min.css, então vence empates de especificidade.
+ * Sem CSS inline no HTML e sem CDN: todo o estilo próprio fica aqui.
  *
- * RESERVADO PARA A META L3 (Lucas): escrever as 20 regras da tabela 5.7 do
- * RFC (2 seletores compostos, 2 pseudoclasses, 2 pseudoelementos etc.).
+ * Resumo dos tipos de seletor usados:
+ *   tag: 2, 14, 20 | agrupamento: 3, 11 | classe: 4, 8, 9, 12, 18, 19
+ *   ID: 10, 11 | descendente: 5, 6, 7, 11, 13, 15 | filho (>) e universal (*): 16
+ *   atributo: 15, 17 | pseudoclasse: 1, 5, 7, 16 | pseudoelemento: 17, 19
  *
- * Este arquivo foi criado vazio apenas para que as páginas não apontem para
- * um arquivo inexistente. Nada de CSS inline é usado no HTML — todo o estilo
- * próprio entra aqui.
+ * Paleta (identidade visual): azul-escuro #0B1C2C, verde-esmeralda #1A7A5C,
+ * laranja queimado #E85D04, cinza claro #F4F6F8, texto #1F2937 / #4B5563,
+ * bordas #E5E7EB. Sem creme, bege, pastel, gradiente decorativo ou sombra colorida.
  */
+
+/* 01 — Pseudoclasse :root — paleta em variáveis e ajuste das variáveis do Bootstrap */
+:root {
+  --azul-escuro: #0B1C2C;
+  --esmeralda: #1A7A5C;
+  --laranja: #E85D04;
+  --laranja-escuro: #B84A03;
+  --fundo-secao: #F4F6F8;
+  --texto: #1F2937;
+  --texto-sec: #4B5563;
+  --borda: #E5E7EB;
+  --bs-body-color: #1F2937;
+  --bs-body-color-rgb: 31, 41, 55;
+  --bs-body-bg: #FFFFFF;
+  --bs-heading-color: #0B1C2C;
+  --bs-border-color: #E5E7EB;
+  --bs-link-color-rgb: 26, 122, 92;
+  --bs-link-hover-color-rgb: 11, 28, 44;
+}
+
+/* 02 — Seletor de tag: body (tipografia base, 17px no desktop) */
+body {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+/* 03 — Agrupamento de tags: h1, h2, h3 (pesados, sem sombra e sem letter-spacing) */
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-shadow: none;
+}
+
+/* 04 — Seletor de classe: .navbar (fundo branco sólido, borda e sombra cinza sutil) */
+.navbar {
+  --bs-navbar-brand-color: #0B1C2C;
+  --bs-navbar-brand-hover-color: #0B1C2C;
+  --bs-navbar-color: #4B5563;
+  --bs-navbar-active-color: #0B1C2C;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--borda);
+  box-shadow: 0 1px 3px rgba(31, 41, 55, 0.1);
+  font-weight: 500;
+}
+
+/* 05 — Descendente + pseudoclasse :hover: links do menu */
+.navbar-nav .nav-link:hover {
+  color: var(--esmeralda);
+}
+
+/* 06 — Seletor descendente: main section (espaço em branco entre seções) */
+main section {
+  padding: 3.5rem 0;
+}
+
+/* 07 — Descendente + pseudoclasse :nth-of-type(even): seções pares com fundo cinza claro */
+main section:nth-of-type(even) {
+  background-color: var(--fundo-secao);
+}
+
+/* 08 — Seletor de classe: .hero (foto + overlay escuro leve + texto branco) */
+.hero {
+  --bs-heading-color: #FFFFFF;
+  background: linear-gradient(rgba(11, 28, 44, 0.65), rgba(11, 28, 44, 0.65)),
+              url("../img/hero-academia.jpg") center / cover no-repeat;
+  color: #FFFFFF;
+  padding: 6rem 0;
+}
+
+/* 09 — Seletor de classe: .card-modalidade (fundo branco, borda cinza, sombra leve) */
+.card-modalidade {
+  height: 100%;
+  padding: 1.25rem;
+  background-color: #FFFFFF;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(31, 41, 55, 0.12);
+}
+
+/* 10 — Seletor de ID: título da página de horários */
+#titulo-horarios {
+  display: inline-block;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--esmeralda);
+}
+
+/* 11 — Agrupamento de seletores (ID + descendente): #tabela-horarios th, #tabela-horarios td
+        Restrito à página de horários para não afetar a tabela da luta.html */
+#tabela-horarios th,
+#tabela-horarios td {
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* 12 — Seletor de classe: .table (zebra cinza claro e bordas suaves, via variáveis do Bootstrap) */
+.table {
+  --bs-table-color: #1F2937;
+  --bs-table-striped-color: #1F2937;
+  --bs-table-striped-bg: #F4F6F8;
+  --bs-table-border-color: #E5E7EB;
+}
+
+/* 13 — Seletor descendente: .table thead th (cabeçalho azul-escuro) */
+.table thead th {
+  background-color: var(--azul-escuro);
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+/* 14 — Seletor de tag: caption (legenda da tabela, posicionada acima) */
+caption {
+  caption-side: top;
+  font-weight: 600;
+  color: var(--texto-sec);
+}
+
+/* 15 — Descendente + atributo: th de linha (coluna "Horário") */
+tbody th[scope="row"] {
+  font-weight: 600;
+  color: var(--azul-escuro);
+}
+
+/* 16 — Filho (>) + universal (*) + pseudoclasse :hover: realce neutro da linha sob o mouse */
+tbody tr:hover > * {
+  --bs-table-bg-state: #E5E7EB;
+}
+
+/* 17 — Atributo + pseudoelemento ::before: marcador verde antes da modalidade */
+td[class^="mod-"]::before {
+  content: "\25CF";
+  margin-right: 0.4rem;
+  color: var(--esmeralda);
+}
+
+/* 18 — Seletor de classe: .btn-principal (botão sólido laranja; 1.2rem/700 para contraste de texto grande) */
+.btn-principal {
+  --bs-btn-color: #FFFFFF;
+  --bs-btn-bg: #E85D04;
+  --bs-btn-border-color: #E85D04;
+  --bs-btn-hover-color: #FFFFFF;
+  --bs-btn-hover-bg: #B84A03;
+  --bs-btn-hover-border-color: #B84A03;
+  --bs-btn-active-color: #FFFFFF;
+  --bs-btn-active-bg: #B84A03;
+  --bs-btn-active-border-color: #B84A03;
+  --bs-btn-focus-shadow-rgb: 232, 93, 4;
+  --bs-btn-font-size: 1.2rem;
+  --bs-btn-font-weight: 700;
+}
+
+/* 19 — Classe + pseudoelemento ::after: seta ao final do botão */
+.btn-principal::after {
+  content: "\2192";
+  margin-left: 0.5rem;
+}
+
+/* 20 — Seletor de tag: footer (fundo azul-escuro, texto e links claros via variáveis) */
+footer {
+  --bs-heading-color: #FFFFFF;
+  --bs-link-color-rgb: 255, 255, 255;
+  --bs-link-hover-color-rgb: 229, 231, 235;
+  background-color: var(--azul-escuro);
+  color: #E5E7EB;
+  padding: 3rem 0 1.5rem;
+}
