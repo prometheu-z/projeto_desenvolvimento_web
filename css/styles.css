@@ -1,203 +1,291 @@
-/*
- * styles.css — Academia Bem-Estar
- * -------------------------------------------------------------------------
- * Metas L1 + L3: identidade visual aplicada em exatamente 20 regras CSS
- * (contagem comentada em cada regra).
- * Carregado DEPOIS do bootstrap.min.css, então vence empates de especificidade.
- * Sem CSS inline no HTML e sem CDN: todo o estilo próprio fica aqui.
- *
- * Resumo dos tipos de seletor usados:
- *   tag: 2, 14, 20 | agrupamento: 3, 10, 11 | classe: 4, 8, 9, 12, 18, 19
- *   ID: 11 | descendente: 5, 6, 7, 10, 11, 13, 15 | filho (>) e universal (*): 16
- *   atributo: 15, 17 | pseudoclasse: 1, 7, 16 | pseudoelemento: 17, 19
- *
- * Paleta (identidade visual): azul-escuro #0B1C2C, verde-esmeralda #1A7A5C,
- * laranja queimado #E85D04, cinza claro #F4F6F8, texto #1F2937 / #4B5563,
- * bordas #E5E7EB. Sem creme, bege, pastel, gradiente decorativo ou sombra colorida.
- */
+/* ==========================================================================
+   ACADEMIA BEM-ESTAR - STYLES.CSS
+   Identidade visual: profissional, limpa e moderna
+   (Azul-escuro + Verde-esmeralda + Laranja queimado)
+   ========================================================================== */
 
-/* 01 — Pseudoclasse :root — paleta em variáveis e ajuste das variáveis do Bootstrap */
+/* 1. Pseudoclasse :root: variáveis (tokens) da identidade visual — seção 5.9 do RFC */
 :root {
-  --azul-escuro: #0B1C2C;
-  --esmeralda: #1A7A5C;
-  --laranja: #E85D04;
-  --laranja-escuro: #B84A03;
-  --fundo-secao: #F4F6F8;
-  --texto: #1F2937;
-  --texto-sec: #4B5563;
-  --borda: #E5E7EB;
-  --bs-body-color: #1F2937;
-  --bs-body-color-rgb: 31, 41, 55;
-  --bs-body-bg: #FFFFFF;
-  --bs-heading-color: #0B1C2C;
-  --bs-border-color: #E5E7EB;
-  --bs-link-color-rgb: 26, 122, 92;
-  --bs-link-hover-color-rgb: 11, 28, 44;
+    --cor-primaria: #0B1C2C;        /* azul-escuro */
+    --cor-secundaria: #1A7A5C;      /* verde-esmeralda */
+    --cor-destaque: #E85D04;        /* laranja queimado */
+    --cor-destaque-escura: #C44D03;
+    --cor-fundo: #F4F6F8;
+    --cor-texto: #1F2937;
+    --cor-texto-sec: #4B5563;
+    --cor-borda: #E5E7EB;
+    --fonte-titulo: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --fonte-texto: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* 02 — Seletor de tag: body (tipografia base, 17px no desktop) */
+/* 2. Elemento base e fonte padrão */
 body {
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  font-size: 1.0625rem;
-  line-height: 1.6;
+    background-color: var(--cor-fundo);
+    font-family: var(--fonte-texto);
+    color: var(--cor-texto);
 }
 
-/* 03 — Agrupamento de tags: h1, h2, h3 (pesados, sem sombra e sem letter-spacing) */
-h1,
-h2,
-h3 {
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: normal;
-  text-shadow: none;
-}
-
-/* 04 — Seletor de classe: .navbar (fundo branco sólido, borda e sombra cinza sutil; hover dos links via variável) */
-.navbar {
-  --bs-navbar-brand-color: #0B1C2C;
-  --bs-navbar-brand-hover-color: #0B1C2C;
-  --bs-navbar-color: #4B5563;
-  --bs-navbar-hover-color: #1A7A5C;
-  --bs-navbar-active-color: #0B1C2C;
-  background-color: #FFFFFF;
-  border-bottom: 1px solid var(--borda);
-  box-shadow: 0 1px 3px rgba(31, 41, 55, 0.1);
-  font-weight: 500;
-}
-
-/* 05 — Seletor descendente (classe + tag): .navbar-brand img (logo com altura máxima de 48px) */
-.navbar-brand img {
-  max-height: 48px;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-}
-
-/* 06 — Seletor descendente: main section (espaço em branco entre seções) */
+/* 3. Seletores descendentes: espaçamento entre as seções do conteúdo principal */
 main section {
-  padding: 3.5rem 0;
+    padding: 3.5rem 0;
 }
 
-/* 07 — Descendente + pseudoclasse :nth-of-type(even): seções pares com fundo cinza claro */
-main section:nth-of-type(even) {
-  background-color: var(--fundo-secao);
+/* 4. Barra de navegação (fixa no topo pela classe .sticky-top do Bootstrap) */
+.navbar {
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
-/* 08 — Seletor de classe: .hero (foto + overlay escuro leve; 280px no mobile a 420px no desktop) */
+/* 5. Seletor composto 1: ajuste da logo na navbar */
+.navbar-brand img {
+    height: 48px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+/* 6. Links do menu de navegação */
+.nav-link {
+    font-weight: 500;
+    color: var(--cor-texto);
+    transition: color 0.2s ease-in-out;
+}
+
+/* 7. Pseudoclasse 1: hover nos links do menu */
+.nav-link:hover {
+    color: var(--cor-destaque);
+}
+
+/* 8. Seção principal (Hero) na página inicial */
 .hero {
-  --bs-heading-color: #FFFFFF;
-  background: linear-gradient(rgba(11, 28, 44, 0.65), rgba(11, 28, 44, 0.65)),
-              url("../img/heroacademia.jpg") center / cover no-repeat;
-  color: #FFFFFF;
-  display: flex;
-  align-items: center;
-  min-height: clamp(280px, 40vw, 420px);
-  padding: 3rem 0;
+    background-color: var(--cor-primaria);
+    color: #FFFFFF;
+    padding: 60px 0;
+    text-align: center;
 }
 
-/* 09 — Seletor de classe: .card-modalidade (card branco; define altura e sombra das imagens internas) */
-.card-modalidade {
-  --altura-img: 220px;
-  --sombra-img: none;
-  height: 100%;
-  padding: 1.25rem;
-  background-color: #FFFFFF;
-  border: 1px solid var(--borda);
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(31, 41, 55, 0.12);
+/* 9. Seletor composto 2: parágrafo de destaque dentro da seção hero */
+.hero p.lead {
+    font-size: 1.25rem;
+    color: #CBD5E1;
+    max-width: 800px;
+    margin: 0 auto 20px auto;
 }
 
-/* 10 — Agrupamento de seletores descendentes: .card-modalidade img, figure img (padrão de todas as imagens) */
-.card-modalidade img,
-figure img {
-  display: block;
-  width: 100%;
-  height: var(--altura-img, auto);
-  max-height: 380px;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
-  object-position: center;
-  margin-bottom: 0.75rem;
-  border-radius: 6px;
-  box-shadow: var(--sombra-img, 0 1px 3px rgba(31, 41, 55, 0.12));
+/* 10. Agrupamento de tags: estilização base para títulos */
+h1, h2, h3 {
+    color: var(--cor-primaria);
+    margin-bottom: 1rem;
 }
 
-/* 11 — Agrupamento de seletores (ID + descendente): #tabela-horarios th, #tabela-horarios td
-        Restrito à página de horários para não afetar a tabela da luta.html */
-#tabela-horarios th,
-#tabela-horarios td {
-  vertical-align: middle;
-  white-space: nowrap;
+/* 11. Pseudoelemento 1: linha decorativa abaixo dos H2 */
+h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--cor-destaque);
+    margin-top: 10px;
+    border-radius: 2px;
 }
 
-/* 12 — Seletor de classe: .table (zebra cinza claro e bordas suaves, via variáveis do Bootstrap) */
-.table {
-  --bs-table-color: #1F2937;
-  --bs-table-striped-color: #1F2937;
-  --bs-table-striped-bg: #F4F6F8;
-  --bs-table-border-color: #E5E7EB;
-}
-
-/* 13 — Seletor descendente: .table thead th (cabeçalho azul-escuro) */
-.table thead th {
-  background-color: var(--azul-escuro);
-  color: #FFFFFF;
-  font-weight: 600;
-}
-
-/* 14 — Seletor de tag: caption (legenda da tabela, posicionada acima) */
-caption {
-  caption-side: top;
-  font-weight: 600;
-  color: var(--texto-sec);
-}
-
-/* 15 — Descendente + atributo: th de linha (coluna "Horário") */
-tbody th[scope="row"] {
-  font-weight: 600;
-  color: var(--azul-escuro);
-}
-
-/* 16 — Filho (>) + universal (*) + pseudoclasse :hover: realce neutro da linha sob o mouse */
-tbody tr:hover > * {
-  --bs-table-bg-state: #E5E7EB;
-}
-
-/* 17 — Atributo + pseudoelemento ::before: marcador verde antes da modalidade */
-td[class^="mod-"]::before {
-  content: "\25CF";
-  margin-right: 0.4rem;
-  color: var(--esmeralda);
-}
-
-/* 18 — Seletor de classe: .btn-principal (botão sólido laranja; 1.2rem/700 para contraste de texto grande) */
+/* 12. Botões principais da aplicação */
 .btn-principal {
-  --bs-btn-color: #FFFFFF;
-  --bs-btn-bg: #E85D04;
-  --bs-btn-border-color: #E85D04;
-  --bs-btn-hover-color: #FFFFFF;
-  --bs-btn-hover-bg: #B84A03;
-  --bs-btn-hover-border-color: #B84A03;
-  --bs-btn-active-color: #FFFFFF;
-  --bs-btn-active-bg: #B84A03;
-  --bs-btn-active-border-color: #B84A03;
-  --bs-btn-focus-shadow-rgb: 232, 93, 4;
-  --bs-btn-font-size: 1.2rem;
-  --bs-btn-font-weight: 700;
+    background-color: var(--cor-destaque);
+    color: #FFFFFF;
+    border: none;
+    font-weight: bold;
+    padding: 10px 24px;
+    transition: background-color 0.3s;
 }
 
-/* 19 — Classe + pseudoelemento ::after: seta ao final do botão */
-.btn-principal::after {
-  content: "\2192";
-  margin-left: 0.5rem;
+/* 13. Pseudoclasse 2: hover no botão principal */
+.btn-principal:hover {
+    background-color: var(--cor-destaque-escura);
+    color: #FFFFFF;
 }
 
-/* 20 — Seletor de tag: footer (fundo azul-escuro, texto e links claros via variáveis) */
+/* 14. Depoimento de aluno na página inicial */
+blockquote {
+    border-left: 5px solid var(--cor-destaque);
+    padding: 20px;
+    font-style: italic;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* 15. Cards das modalidades na página inicial */
+.card-modalidade {
+    height: 100%;
+    padding: 1.25rem;
+    background-color: #FFFFFF;
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(31, 41, 55, 0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* 16. Pseudoclasse 3: elevação do card ao passar o mouse */
+.card-modalidade:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(31, 41, 55, 0.18);
+}
+
+/* 17. Imagens dos cards de modalidades */
+.img-card {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* 18. Imagens do Taekwondo na página de luta */
+.img-luta-full {
+    height: auto !important;
+    max-height: 600px;
+    width: 100%;
+    object-fit: contain !important;
+    border-radius: 8px;
+}
+
+/* 19. Formatação base da tabela de horários */
+#tabela-horarios {
+    margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    background-color: #FFFFFF;
+}
+
+/* 20. Seletor composto 3: cabeçalho da tabela de horários */
+#tabela-horarios th {
+    background-color: var(--cor-primaria);
+    color: #FFFFFF;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* 21. Seletor de tag: legenda da tabela */
+caption {
+    caption-side: top;
+    font-weight: 600;
+    color: var(--cor-texto-sec);
+    padding-bottom: 0.5rem;
+}
+
+/* 22. Células da tabela - Musculação */
+.mod-musculacao {
+    background-color: #E5E7EB !important;
+    border-left: 4px solid var(--cor-primaria);
+}
+
+/* 23. Células da tabela - Dança */
+.mod-danca {
+    background-color: #D1FAE5 !important;
+    border-left: 4px solid var(--cor-secundaria);
+}
+
+/* 24. Células da tabela - Taekwondo */
+.mod-taekwondo {
+    background-color: #FFEDD5 !important;
+    border-left: 4px solid var(--cor-destaque);
+}
+
+/* 25. Estilização dos blocos do formulário */
+fieldset {
+    border: 1px solid var(--cor-borda);
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+}
+
+/* 26. Título das seções do formulário */
+legend {
+    font-weight: bold;
+    color: var(--cor-destaque);
+    padding: 0 10px;
+}
+
+/* 27. Seletores compostos + pseudoclasse: foco visível nos campos do formulário */
+form input:focus,
+form select:focus,
+form textarea:focus {
+    border-color: var(--cor-destaque);
+    box-shadow: 0 0 0 0.2rem rgba(232, 93, 4, 0.25);
+}
+
+/* 28. Texto de erro da validação do formulário (usado na Fase 2) */
+.msg-erro {
+    display: block;
+    margin-top: 0.25rem;
+    color: #B91C1C;
+    font-size: 0.875rem;
+}
+
+/* 29. Pseudoelemento 2: placeholder dos inputs e do textarea */
+input::placeholder,
+textarea::placeholder {
+    color: #9CA3AF !important;
+    font-style: italic;
+}
+
+/* 30. Diálogo de resumo do cadastro (Fase 2) */
+dialog {
+    border: none;
+    border-radius: 8px;
+    padding: 1.5rem;
+    max-width: 480px;
+    color: var(--cor-texto);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* 31. Pseudoelemento 3: fundo escurecido atrás do diálogo */
+dialog::backdrop {
+    background-color: rgba(11, 28, 44, 0.6);
+}
+
+/* 32. Formatação do rodapé */
 footer {
-  --bs-heading-color: #FFFFFF;
-  --bs-link-color-rgb: 255, 255, 255;
-  --bs-link-hover-color-rgb: 229, 231, 235;
-  background-color: var(--azul-escuro);
-  color: #E5E7EB;
-  padding: 3rem 0 1.5rem;
+    background-color: var(--cor-primaria);
+    color: var(--cor-borda);
+    padding: 40px 0 20px 0;
+    margin-top: 50px;
+}
+
+/* 33. Legibilidade dos títulos e links do rodapé sobre o fundo escuro */
+footer h2 {
+    color: #FFFFFF;
+}
+
+footer nav a {
+    color: var(--cor-borda);
+    text-decoration: none;
+}
+
+footer nav a:hover {
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+
+/* 34. Seletor composto 4: links de contato no rodapé */
+footer address a {
+    color: #FDBA74;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* 35. Pseudoclasse 5: hover nos links de contato do rodapé */
+footer address a:hover {
+    text-decoration: underline;
+    color: var(--cor-destaque);
+}
+
+/* 36. Ajuste do hero em telas pequenas (até 576px) */
+@media (max-width: 576px) {
+    .hero {
+        padding: 40px 0;
+    }
+
+    .hero h1 {
+        font-size: 1.75rem;
+    }
 }

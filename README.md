@@ -17,7 +17,7 @@ projeto_desenvolvimento_web/
 ├── musculacao.html     Descrição e abas "Sobre" e "Pré-avaliação com profissional"
 ├── luta.html           Descrição, benefícios, níveis/faixas e imagens
 ├── danca.html          Descrição, benefícios e imagens
-├── horarios.html       Grade de aulas (em construção — meta L5)
+├── horarios.html       Grade de aulas em tabela semanal (meta L5)
 ├── cadastro.html       Formulário geral de cadastro (12 campos — meta G4)
 ├── css/
 │   ├── bootstrap.min.css   Bootstrap 5.3.3 (local, sem CDN)

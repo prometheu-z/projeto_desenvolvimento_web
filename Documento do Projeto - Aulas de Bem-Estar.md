@@ -1,3 +1,4 @@
+
 # **RFC – Implementação do Projeto SPODWE1 (Website)**
 
 **Autores:** Gabriel e Lucas E.  
@@ -153,10 +154,10 @@ Comportamento ao enviar: preventDefault, validar tudo, mostrar erros ao lado de 
 
 ### **5.6 Tabela de horários (horarios.html)**
 
-Colunas: **Dia**, **Horário**, **Modalidade**, **Professor**, **Nível**. Estrutura: table com caption, thead, tbody id="corpo-tabela".
+Layout: **grade semanal** — os **dias** ficam nas colunas e os **horários** nas linhas; cada célula mostra um "card" de aula com modalidade, nível e professor. Estrutura: table com caption, thead e **tbody id="corpo-tabela"**.
 
 * **Intermediária:** linhas escritas direto no HTML.  
-* **Final:** tbody vazio, preenchido por fetch("dados/tabela.json") quando a página carrega.
+* **Final:** tbody vazio, preenchido por fetch("dados/tabela.json") quando a página carrega; o JavaScript agrupa a lista por horário para montar a matriz.  
 
 Formato do dados/tabela.json (lista de objetos, chaves em minúsculas e sem acento):
 
