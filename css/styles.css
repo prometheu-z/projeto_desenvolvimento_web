@@ -1,14 +1,8 @@
-/* ==========================================================================
-   ACADEMIA BEM-ESTAR - STYLES.CSS
-   Identidade visual: profissional, limpa e moderna
-   (Azul-escuro + Verde-esmeralda + Laranja queimado)
-   ========================================================================== */
-
-/* 1. Pseudoclasse :root: variáveis (tokens) da identidade visual — seção 5.9 do RFC */
+/* Identidade visual: azul-escuro, verde-esmeralda e laranja queimado */
 :root {
-    --cor-primaria: #0B1C2C;        /* azul-escuro */
-    --cor-secundaria: #1A7A5C;      /* verde-esmeralda */
-    --cor-destaque: #E85D04;        /* laranja queimado */
+    --cor-primaria: #0B1C2C;
+    --cor-secundaria: #1A7A5C;
+    --cor-destaque: #E85D04;
     --cor-destaque-escura: #C44D03;
     --cor-fundo: #F4F6F8;
     --cor-texto: #1F2937;
@@ -16,29 +10,25 @@
     --cor-borda: #E5E7EB;
     --fonte-titulo: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     --fonte-texto: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    --altura-logo: 64px;
+    --altura-logo: 158px;
 }
 
-/* 2. Elemento base e fonte padrão */
 body {
     background-color: var(--cor-fundo);
     font-family: var(--fonte-texto);
     color: var(--cor-texto);
 }
 
-/* 3. Seletores descendentes: espaçamento entre as seções do conteúdo principal */
 main section {
     padding: 3.5rem 0;
 }
 
-/* 4. Barra de navegação (fixa no topo pela classe .sticky-top do Bootstrap) */
 .navbar {
     background-color: #FFFFFF;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
-/* 5. Seletor composto 1: ajuste da logo na navbar.
-      Para deixar a logo maior ou menor, basta trocar o valor de --altura-logo abaixo. */
+/* Ajuste --altura-logo no :root para mudar o tamanho da logo */
 .navbar-brand img {
     height: var(--altura-logo);
     width: auto;
@@ -46,19 +36,16 @@ main section {
     object-fit: contain;
 }
 
-/* 6. Links do menu de navegação */
 .nav-link {
     font-weight: 500;
     color: var(--cor-texto);
     transition: color 0.2s ease-in-out;
 }
 
-/* 7. Pseudoclasse 1: hover nos links do menu */
 .nav-link:hover {
     color: var(--cor-destaque);
 }
 
-/* 8. Seção principal (Hero) na página inicial */
 .hero {
     background-color: var(--cor-primaria);
     color: #FFFFFF;
@@ -66,7 +53,6 @@ main section {
     text-align: center;
 }
 
-/* 9. Seletor composto 2: parágrafo de destaque dentro da seção hero */
 .hero p.lead {
     font-size: 1.25rem;
     color: #CBD5E1;
@@ -74,13 +60,11 @@ main section {
     margin: 0 auto 20px auto;
 }
 
-/* 10. Agrupamento de tags: estilização base para títulos */
 h1, h2, h3 {
     color: var(--cor-primaria);
     margin-bottom: 1rem;
 }
 
-/* 11. Pseudoelemento 1: linha decorativa abaixo dos H2 */
 h2::after {
     content: "";
     display: block;
@@ -91,7 +75,6 @@ h2::after {
     border-radius: 2px;
 }
 
-/* 12. Botões principais da aplicação */
 .btn-principal {
     background-color: var(--cor-destaque);
     color: #FFFFFF;
@@ -101,13 +84,11 @@ h2::after {
     transition: background-color 0.3s;
 }
 
-/* 13. Pseudoclasse 2: hover no botão principal */
 .btn-principal:hover {
     background-color: var(--cor-destaque-escura);
     color: #FFFFFF;
 }
 
-/* 14. Depoimento de aluno na página inicial */
 blockquote {
     border-left: 5px solid var(--cor-destaque);
     padding: 20px;
@@ -117,7 +98,6 @@ blockquote {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-/* 15. Cards das modalidades na página inicial */
 .card-modalidade {
     height: 100%;
     padding: 1.25rem;
@@ -128,13 +108,11 @@ blockquote {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* 16. Pseudoclasse 3: elevação do card ao passar o mouse */
 .card-modalidade:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 16px rgba(31, 41, 55, 0.18);
 }
 
-/* 17. Imagens dos cards de modalidades */
 .img-card {
     width: 100%;
     height: 250px;
@@ -142,7 +120,6 @@ blockquote {
     border-radius: 8px;
 }
 
-/* 18. Imagens do Taekwondo na página de luta */
 .img-luta-full {
     height: auto !important;
     max-height: 600px;
@@ -151,14 +128,12 @@ blockquote {
     border-radius: 8px;
 }
 
-/* 19. Formatação base da tabela de horários */
 #tabela-horarios {
     margin-top: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     background-color: #FFFFFF;
 }
 
-/* 20. Seletor composto 3: cabeçalho da tabela de horários */
 #tabela-horarios th {
     background-color: var(--cor-primaria);
     color: #FFFFFF;
@@ -166,7 +141,6 @@ blockquote {
     vertical-align: middle;
 }
 
-/* 21. Seletor de tag: legenda da tabela */
 caption {
     caption-side: top;
     font-weight: 600;
@@ -174,25 +148,22 @@ caption {
     padding-bottom: 0.5rem;
 }
 
-/* 22. Células da tabela - Musculação */
+/* Cores por modalidade na grade de horários */
 .mod-musculacao {
     background-color: #E5E7EB !important;
     border-left: 4px solid var(--cor-primaria);
 }
 
-/* 23. Células da tabela - Dança */
 .mod-danca {
     background-color: #D1FAE5 !important;
     border-left: 4px solid var(--cor-secundaria);
 }
 
-/* 24. Células da tabela - Taekwondo */
 .mod-taekwondo {
     background-color: #FFEDD5 !important;
     border-left: 4px solid var(--cor-destaque);
 }
 
-/* 25. Estilização dos blocos do formulário */
 fieldset {
     border: 1px solid var(--cor-borda);
     padding: 20px;
@@ -200,14 +171,12 @@ fieldset {
     background-color: #FFFFFF;
 }
 
-/* 26. Título das seções do formulário */
 legend {
     font-weight: bold;
     color: var(--cor-destaque);
     padding: 0 10px;
 }
 
-/* 27. Seletores compostos + pseudoclasse: foco visível nos campos do formulário */
 form input:focus,
 form select:focus,
 form textarea:focus {
@@ -215,7 +184,6 @@ form textarea:focus {
     box-shadow: 0 0 0 0.2rem rgba(232, 93, 4, 0.25);
 }
 
-/* 28. Texto de erro da validação do formulário (usado na Fase 2) */
 .msg-erro {
     display: block;
     margin-top: 0.25rem;
@@ -223,14 +191,12 @@ form textarea:focus {
     font-size: 0.875rem;
 }
 
-/* 29. Pseudoelemento 2: placeholder dos inputs e do textarea */
 input::placeholder,
 textarea::placeholder {
     color: #9CA3AF !important;
     font-style: italic;
 }
 
-/* 30. Diálogo de resumo do cadastro (Fase 2) */
 dialog {
     border: none;
     border-radius: 8px;
@@ -240,12 +206,10 @@ dialog {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
-/* 31. Pseudoelemento 3: fundo escurecido atrás do diálogo */
 dialog::backdrop {
     background-color: rgba(11, 28, 44, 0.6);
 }
 
-/* 32. Formatação do rodapé */
 footer {
     background-color: var(--cor-primaria);
     color: var(--cor-borda);
@@ -253,7 +217,6 @@ footer {
     margin-top: 50px;
 }
 
-/* 33. Legibilidade dos títulos e links do rodapé sobre o fundo escuro */
 footer h2 {
     color: #FFFFFF;
 }
@@ -268,20 +231,17 @@ footer nav a:hover {
     text-decoration: underline;
 }
 
-/* 34. Seletor composto 4: links de contato no rodapé */
 footer address a {
     color: #FDBA74;
     text-decoration: none;
     font-weight: 500;
 }
 
-/* 35. Pseudoclasse 5: hover nos links de contato do rodapé */
 footer address a:hover {
     text-decoration: underline;
     color: var(--cor-destaque);
 }
 
-/* 36. Ajuste do hero em telas pequenas (até 576px) */
 @media (max-width: 576px) {
     .hero {
         padding: 40px 0;

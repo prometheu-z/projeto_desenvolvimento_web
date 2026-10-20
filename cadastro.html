@@ -41,10 +41,8 @@
           indicados e a validação é feita automaticamente antes do envio.
         </p>
 
-        <!-- Formulário geral de cadastro (12 campos), conforme a seção 5.5 do RFC (meta G4).
-             A validação é feita por JavaScript na Fase 2, por isso o atributo novalidate. -->
+        <!-- novalidate: a validação é feita por JavaScript -->
         <form id="form-cadastro" novalidate>
-          <!-- 1. Dados pessoais: nome, e-mail, telefone e data de nascimento -->
           <fieldset class="mb-4">
             <legend>Dados pessoais</legend>
 
@@ -70,13 +68,11 @@
               <div class="col-md-6 mb-3">
                 <label for="nascimento" class="form-label">Data de nascimento</label>
                 <input type="date" class="form-control" id="nascimento" name="nascimento" required>
-                <!-- A idade mínima (questão em aberto na seção 8 do RFC) é validada por JavaScript na Fase 2. -->
                 <p class="form-text">A idade mínima é definida pela academia.</p>
               </div>
             </div>
           </fieldset>
 
-          <!-- 2. Dados de acesso -->
           <fieldset class="mb-4">
             <legend>Dados de acesso</legend>
 
@@ -90,7 +86,6 @@
             </div>
           </fieldset>
 
-          <!-- 3. Modalidade, plano e horários preferidos -->
           <fieldset class="mb-4">
             <legend>Modalidade e plano</legend>
 
@@ -139,7 +134,6 @@
             </fieldset>
           </fieldset>
 
-          <!-- 4. Perfil do aluno e observações -->
           <fieldset class="mb-4">
             <legend>Perfil e observações</legend>
 
@@ -166,7 +160,6 @@
             </div>
           </fieldset>
 
-          <!-- 5. Termos e envio -->
           <fieldset class="mb-4">
             <legend>Confirmação</legend>
 
@@ -181,8 +174,7 @@
           </fieldset>
         </form>
 
-        <!-- Diálogo de resumo do cadastro. O conteúdo é montado pelo JavaScript
-             na Fase 2 (função exibirResumo, meta G8), por isso começa vazio. -->
+        <!-- Preenchido por JavaScript com os dados do formulário -->
         <dialog id="dialogo-resumo"></dialog>
       </div>
     </section>
