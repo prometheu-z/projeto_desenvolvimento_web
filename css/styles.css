@@ -16,6 +16,7 @@
     --cor-borda: #E5E7EB;
     --fonte-titulo: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     --fonte-texto: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --altura-logo: 64px;
 }
 
 /* 2. Elemento base e fonte padrão */
@@ -36,9 +37,10 @@ main section {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
-/* 5. Seletor composto 1: ajuste da logo na navbar */
+/* 5. Seletor composto 1: ajuste da logo na navbar.
+      Para deixar a logo maior ou menor, basta trocar o valor de --altura-logo abaixo. */
 .navbar-brand img {
-    height: 48px;
+    height: var(--altura-logo);
     width: auto;
     max-width: 100%;
     object-fit: contain;
