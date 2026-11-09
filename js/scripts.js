@@ -58,7 +58,68 @@ function aoEditarCampo(evento) {
     const campo = evento.target;
 
     if (campo.matches('input, select, textarea')) {
+        if (campo.name === 'telefone') {
+            aplicarMascaraTelefone(campo);
+        }
+
         limparEstadoCampo(campo);
+    }
+}
+
+/* ------------------------ Máscara do telefone ------------------------ */
+
+function formatarTelefone(valor) {
+    let digitos = valor.replace(/\D/g, '');
+
+    // Aceita números colados com o código do Brasil (+55).
+    if (digitos.length > 11 && digitos.startsWith('55')) {
+        digitos = digitos.slice(2);
+    }
+
+    digitos = digitos.slice(0, 11);
+
+    if (digitos.length === 0) {
+        return '';
+    }
+
+    if (digitos.length <= 2) {
+        return `(${digitos}`;
+    }
+
+    const ddd = digitos.slice(0, 2);
+    const numero = digitos.slice(2);
+
+    if (numero.length <= 4) {
+        return `(${ddd}) ${numero}`;
+    }
+
+    if (digitos.length === 11) {
+        return `(${ddd}) ${numero.slice(0, 5)}-${numero.slice(5)}`;
+    }
+
+    return `(${ddd}) ${numero.slice(0, 4)}-${numero.slice(4)}`;
+}
+
+function aplicarMascaraTelefone(campo) {
+    const posicao = campo.selectionStart ?? campo.value.length;
+    const digitosAntes = campo.value.slice(0, posicao).replace(/\D/g, '').length;
+    const formatado = formatarTelefone(campo.value);
+
+    campo.value = formatado;
+
+    let novaPosicao = 0;
+    let digitos = 0;
+
+    while (novaPosicao < formatado.length && digitos < digitosAntes) {
+        if (/\d/.test(formatado[novaPosicao])) {
+            digitos += 1;
+        }
+
+        novaPosicao += 1;
+    }
+
+    if (document.activeElement === campo) {
+        campo.setSelectionRange(novaPosicao, novaPosicao);
     }
 }
 
