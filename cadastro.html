@@ -42,7 +42,7 @@
         </p>
 
         <!-- novalidate: a validação é feita por JavaScript -->
-        <form id="form-cadastro" novalidate>
+        <form id="form-cadastro" method="post" novalidate>
           <fieldset class="mb-4">
             <legend>Dados pessoais</legend>
 
@@ -68,7 +68,7 @@
               <div class="col-md-6 mb-3">
                 <label for="nascimento" class="form-label">Data de nascimento</label>
                 <input type="date" class="form-control" id="nascimento" name="nascimento" required>
-                <p class="form-text">A idade mínima é definida pela academia.</p>
+                <p class="form-text">Você precisa ter pelo menos 14 anos.</p>
               </div>
             </div>
           </fieldset>
@@ -141,7 +141,7 @@
               <div class="col-md-6 mb-3">
                 <label for="experiencia" class="form-label">Nível de experiência (1 a 5)</label>
                 <input type="range" class="form-range" id="experiencia" name="experiencia"
-                       min="1" max="5" step="1" value="3" required>
+                       min="1" max="5" step="1" value="3">
                 <p class="form-text">1 = nenhuma experiência; 5 = muita experiência.</p>
               </div>
 

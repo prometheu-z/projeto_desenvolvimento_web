@@ -1,0 +1,20 @@
+[
+  { "dia": "Segunda", "horario": "07:00", "modalidade": "Musculação", "professor": "Carlos Mendes", "nivel": "Iniciante" },
+  { "dia": "Quarta", "horario": "07:00", "modalidade": "Musculação", "professor": "Carlos Mendes", "nivel": "Avançado" },
+  { "dia": "Sexta", "horario": "07:00", "modalidade": "Musculação", "professor": "Carlos Mendes", "nivel": "Intermediário" },
+  { "dia": "Terça", "horario": "08:00", "modalidade": "Fit Dance", "professor": "Juliana Alves", "nivel": "Todos os níveis" },
+  { "dia": "Quinta", "horario": "08:00", "modalidade": "Fit Dance", "professor": "Juliana Alves", "nivel": "Todos os níveis" },
+  { "dia": "Sábado", "horario": "08:30", "modalidade": "Musculação", "professor": "Carlos Mendes", "nivel": "Avançado" },
+  { "dia": "Sábado", "horario": "09:30", "modalidade": "Taekwondo", "professor": "Rafael Souza", "nivel": "Todos os níveis" },
+  { "dia": "Sábado", "horario": "11:00", "modalidade": "Fit Dance", "professor": "Juliana Alves", "nivel": "Todos os níveis" },
+  { "dia": "Quarta", "horario": "15:00", "modalidade": "Fit Dance", "professor": "Juliana Alves", "nivel": "Todos os níveis" },
+  { "dia": "Segunda", "horario": "18:30", "modalidade": "Taekwondo", "professor": "Rafael Souza", "nivel": "Iniciante" },
+  { "dia": "Sexta", "horario": "18:30", "modalidade": "Taekwondo", "professor": "Rafael Souza", "nivel": "Avançado" },
+  { "dia": "Terça", "horario": "19:00", "modalidade": "Taekwondo", "professor": "Rafael Souza", "nivel": "Intermediário" },
+  { "dia": "Quarta", "horario": "19:00", "modalidade": "Taekwondo", "professor": "Rafael Souza", "nivel": "Iniciante" },
+  { "dia": "Quinta", "horario": "19:00", "modalidade": "Taekwondo", "professor": "Rafael Souza", "nivel": "Intermediário" },
+  { "dia": "Segunda", "horario": "20:00", "modalidade": "Fit Dance", "professor": "Juliana Alves", "nivel": "Todos os níveis" },
+  { "dia": "Sexta", "horario": "20:00", "modalidade": "Fit Dance", "professor": "Juliana Alves", "nivel": "Todos os níveis" },
+  { "dia": "Terça", "horario": "20:30", "modalidade": "Musculação", "professor": "Carlos Mendes", "nivel": "Intermediário" },
+  { "dia": "Quinta", "horario": "20:30", "modalidade": "Musculação", "professor": "Carlos Mendes", "nivel": "Iniciante" }
+]

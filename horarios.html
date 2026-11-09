@@ -41,8 +41,13 @@
         </p>
 
         <!-- Linhas geradas por JavaScript a partir de dados/tabela.json -->
+        <p id="status-tabela" class="status-tabela" role="status" aria-live="polite"></p>
+        <noscript>
+          <p class="status-tabela erro">Ative o JavaScript para ver a grade de horários.</p>
+        </noscript>
+
         <div class="table-responsive">
-          <table id="tabela-horarios" class="table table-striped table-bordered">
+          <table id="tabela-horarios" class="table table-bordered align-middle">
             <caption>Grade semanal de aulas da Academia Bem-Estar, organizada por horário</caption>
             <thead>
               <tr>
@@ -55,152 +60,7 @@
                 <th scope="col">Sábado</th>
               </tr>
             </thead>
-            <tbody id="corpo-tabela">
-              <tr>
-                <th scope="row">07h00 às 08h00</th>
-                <td class="mod-musculacao">
-                  <strong>Musculação</strong>
-                  <small class="d-block fw-normal">Iniciante · Carlos Mendes</small>
-                </td>
-                <td>—</td>
-                <td class="mod-musculacao">
-                  <strong>Musculação</strong>
-                  <small class="d-block fw-normal">Avançado · Carlos Mendes</small>
-                </td>
-                <td>—</td>
-                <td class="mod-musculacao">
-                  <strong>Musculação</strong>
-                  <small class="d-block fw-normal">Intermediário · Carlos Mendes</small>
-                </td>
-                <td>—</td>
-              </tr>
-              <tr>
-                <th scope="row">08h00 às 09h00</th>
-                <td>—</td>
-                <td class="mod-danca">
-                  <strong>Fit Dance</strong>
-                  <small class="d-block fw-normal">Todos os níveis · Juliana Alves</small>
-                </td>
-                <td>—</td>
-                <td class="mod-danca">
-                  <strong>Fit Dance</strong>
-                  <small class="d-block fw-normal">Todos os níveis · Juliana Alves</small>
-                </td>
-                <td>—</td>
-                <td>—</td>
-              </tr>
-              <tr>
-                <th scope="row">08h30 às 09h30</th>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td class="mod-musculacao">
-                  <strong>Musculação</strong>
-                  <small class="d-block fw-normal">Avançado · Carlos Mendes</small>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">09h30 às 10h30</th>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td class="mod-taekwondo">
-                  <strong>Taekwondo</strong>
-                  <small class="d-block fw-normal">Todos os níveis · Rafael Souza</small>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">11h00 às 12h00</th>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td class="mod-danca">
-                  <strong>Fit Dance</strong>
-                  <small class="d-block fw-normal">Todos os níveis · Juliana Alves</small>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">15h00 às 16h00</th>
-                <td>—</td>
-                <td>—</td>
-                <td class="mod-danca">
-                  <strong>Fit Dance</strong>
-                  <small class="d-block fw-normal">Todos os níveis · Juliana Alves</small>
-                </td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-              </tr>
-              <tr>
-                <th scope="row">18h30 às 19h30</th>
-                <td class="mod-taekwondo">
-                  <strong>Taekwondo</strong>
-                  <small class="d-block fw-normal">Iniciante · Rafael Souza</small>
-                </td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td class="mod-taekwondo">
-                  <strong>Taekwondo</strong>
-                  <small class="d-block fw-normal">Avançado · Rafael Souza</small>
-                </td>
-                <td>—</td>
-              </tr>
-              <tr>
-                <th scope="row">19h00 às 20h00</th>
-                <td>—</td>
-                <td class="mod-taekwondo">
-                  <strong>Taekwondo</strong>
-                  <small class="d-block fw-normal">Intermediário · Rafael Souza</small>
-                </td>
-                <td class="mod-taekwondo">
-                  <strong>Taekwondo</strong>
-                  <small class="d-block fw-normal">Iniciante · Rafael Souza</small>
-                </td>
-                <td class="mod-taekwondo">
-                  <strong>Taekwondo</strong>
-                  <small class="d-block fw-normal">Intermediário · Rafael Souza</small>
-                </td>
-                <td>—</td>
-                <td>—</td>
-              </tr>
-              <tr>
-                <th scope="row">20h00 às 21h00</th>
-                <td class="mod-danca">
-                  <strong>Fit Dance</strong>
-                  <small class="d-block fw-normal">Todos os níveis · Juliana Alves</small>
-                </td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td class="mod-danca">
-                  <strong>Fit Dance</strong>
-                  <small class="d-block fw-normal">Todos os níveis · Juliana Alves</small>
-                </td>
-                <td>—</td>
-              </tr>
-              <tr>
-                <th scope="row">20h30 às 21h30</th>
-                <td>—</td>
-                <td class="mod-musculacao">
-                  <strong>Musculação</strong>
-                  <small class="d-block fw-normal">Intermediário · Carlos Mendes</small>
-                </td>
-                <td>—</td>
-                <td class="mod-musculacao">
-                  <strong>Musculação</strong>
-                  <small class="d-block fw-normal">Iniciante · Carlos Mendes</small>
-                </td>
-                <td>—</td>
-                <td>—</td>
-              </tr>
-            </tbody>
+            <tbody id="corpo-tabela"></tbody>
           </table>
         </div>
       </div>
@@ -226,7 +86,7 @@
         <p>
           Faça o cadastro, informe o horário preferido e nós entramos em contato para marcar a sua aula experimental.
         </p>
-        <p><a class="btn btn-principal" href="cadastro.html" role="button">Quero me matricular</a></p>
+        <p><a class="btn btn-principal" href="cadastro.html">Quero me matricular</a></p>
       </div>
     </section>
   </main>

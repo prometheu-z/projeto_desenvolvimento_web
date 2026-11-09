@@ -4,13 +4,14 @@
     --cor-secundaria: #1A7A5C;
     --cor-destaque: #E85D04;
     --cor-destaque-escura: #C44D03;
+    --cor-destaque-mais-escura: #9C3D02;
     --cor-fundo: #F4F6F8;
     --cor-texto: #1F2937;
     --cor-texto-sec: #4B5563;
     --cor-borda: #E5E7EB;
     --fonte-titulo: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     --fonte-texto: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    --altura-logo: 158px;
+    --altura-logo: 64px;
 }
 
 body {
@@ -19,7 +20,13 @@ body {
     color: var(--cor-texto);
 }
 
-main section {
+a:focus-visible,
+.btn:focus-visible {
+    outline: 3px solid var(--cor-destaque);
+    outline-offset: 2px;
+}
+
+main > section {
     padding: 3.5rem 0;
 }
 
@@ -42,8 +49,8 @@ main section {
     transition: color 0.2s ease-in-out;
 }
 
-.nav-link:hover {
-    color: var(--cor-destaque);
+header nav a:hover {
+    color: var(--cor-destaque-escura);
 }
 
 .hero {
@@ -61,11 +68,17 @@ main section {
 }
 
 h1, h2, h3 {
+    font-family: var(--fonte-titulo);
     color: var(--cor-primaria);
     margin-bottom: 1rem;
 }
 
-h2::after {
+/* O título do hero fica sobre o fundo escuro da seção */
+.hero h1 {
+    color: #FFFFFF;
+}
+
+section h2::after {
     content: "";
     display: block;
     width: 60px;
@@ -75,8 +88,15 @@ h2::after {
     border-radius: 2px;
 }
 
+/* Letra capitular discreta no primeiro parágrafo de cada página */
+main > section:first-of-type > .container > p:first-of-type::first-letter {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: var(--cor-destaque);
+}
+
 .btn-principal {
-    background-color: var(--cor-destaque);
+    background-color: var(--cor-destaque-escura);
     color: #FFFFFF;
     border: none;
     font-weight: bold;
@@ -84,18 +104,32 @@ h2::after {
     transition: background-color 0.3s;
 }
 
-.btn-principal:hover {
-    background-color: var(--cor-destaque-escura);
+.btn-principal:hover,
+.btn-principal:focus {
+    background-color: var(--cor-destaque-mais-escura);
     color: #FFFFFF;
 }
 
 blockquote {
+    position: relative;
     border-left: 5px solid var(--cor-destaque);
-    padding: 20px;
+    padding: 20px 20px 20px 60px;
     font-style: italic;
     background-color: #FFFFFF;
     border-radius: 4px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+blockquote::before {
+    content: "\201C";
+    position: absolute;
+    top: 0.25rem;
+    left: 1rem;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--cor-destaque);
+    opacity: 0.55;
 }
 
 .card-modalidade {
@@ -113,6 +147,7 @@ blockquote {
     box-shadow: 0 8px 16px rgba(31, 41, 55, 0.18);
 }
 
+.card-modalidade img,
 .img-card {
     width: 100%;
     height: 250px;
@@ -128,6 +163,7 @@ blockquote {
     border-radius: 8px;
 }
 
+/* Tabelas: a de horários e a de níveis do Taekwondo */
 #tabela-horarios {
     margin-top: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -141,7 +177,27 @@ blockquote {
     vertical-align: middle;
 }
 
-caption {
+.table thead th {
+    background-color: var(--cor-primaria);
+    color: #FFFFFF;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.table tbody th {
+    background-color: #EEF2F6;
+    font-weight: 600;
+}
+
+tbody tr:nth-child(even) td {
+    background-color: #F8FAFC;
+}
+
+table caption {
     caption-side: top;
     font-weight: 600;
     color: var(--cor-texto-sec);
@@ -164,6 +220,25 @@ caption {
     border-left: 4px solid var(--cor-destaque);
 }
 
+/* Mensagem de carregamento/erro da grade de horários */
+.status-tabela {
+    min-height: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+}
+
+.status-tabela.carregando {
+    color: var(--cor-texto-sec);
+}
+
+.status-tabela.erro {
+    color: #B91C1C;
+}
+
+.status-tabela.aviso {
+    color: #92400E;
+}
+
 fieldset {
     border: 1px solid var(--cor-borda);
     padding: 20px;
@@ -173,7 +248,7 @@ fieldset {
 
 legend {
     font-weight: bold;
-    color: var(--cor-destaque);
+    color: var(--cor-destaque-escura);
     padding: 0 10px;
 }
 
@@ -187,20 +262,28 @@ form textarea:focus {
 .msg-erro {
     display: block;
     margin-top: 0.25rem;
+    margin-bottom: 0;
     color: #B91C1C;
     font-size: 0.875rem;
 }
 
 input::placeholder,
 textarea::placeholder {
-    color: #9CA3AF !important;
+    color: #6B7280 !important;
     font-style: italic;
+}
+
+figure figcaption {
+    margin-top: 0.5rem;
+    color: var(--cor-texto-sec);
+    font-size: 0.9rem;
 }
 
 dialog {
     border: none;
     border-radius: 8px;
     padding: 1.5rem;
+    width: calc(100% - 2rem);
     max-width: 480px;
     color: var(--cor-texto);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
@@ -208,6 +291,29 @@ dialog {
 
 dialog::backdrop {
     background-color: rgba(11, 28, 44, 0.6);
+}
+
+/* O foco vai para o título ao abrir o diálogo (leitor de tela), sem anel visual */
+#dialogo-resumo h2:focus {
+    outline: none;
+}
+
+/* Lista de dados exibida no diálogo de resumo */
+.resumo {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 0.5rem 1rem;
+    margin: 1rem 0 1.25rem;
+}
+
+.resumo dt {
+    font-weight: 600;
+    color: var(--cor-texto-sec);
+}
+
+.resumo dd {
+    margin: 0;
+    overflow-wrap: anywhere;
 }
 
 footer {
@@ -219,6 +325,16 @@ footer {
 
 footer h2 {
     color: #FFFFFF;
+}
+
+/* O rodapé usa h2 dentro de sections; dispensa a barra decorativa do conteúdo */
+footer h2::after {
+    content: none;
+}
+
+footer a {
+    color: var(--cor-borda);
+    text-decoration: none;
 }
 
 footer nav a {
@@ -249,5 +365,27 @@ footer address a:hover {
 
     .hero h1 {
         font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .resumo {
+        grid-template-columns: 1fr;
+    }
+
+    .resumo dd {
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nav-link,
+    .btn-principal,
+    .card-modalidade {
+        transition: none;
+    }
+
+    .card-modalidade:hover {
+        transform: none;
     }
 }
