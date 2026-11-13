@@ -1,6 +1,37 @@
 // Validação do cadastro, resumo em diálogo e carga da grade de horários.
 
 const IDADE_MINIMA = 14;
+
+/*
+ * Fonte única dos planos e preços.
+ * precoPorAtividade é o valor mensal por atividade; o total do período é
+ * precoPorAtividade × meses × quantidade de atividades marcadas.
+ * Altere apenas os valores abaixo para atualizar cards, total e resumo.
+ */
+const PLANOS = {
+    mensal: {
+        nome: 'Mensal',
+        meses: 1,
+        precoPorAtividade: 99.90,
+        descricao: 'Para começar sem compromisso de longo prazo.'
+    },
+    trimestral: {
+        nome: 'Trimestral',
+        meses: 3,
+        precoPorAtividade: 89.90,
+        descricao: 'O equilíbrio entre economia e flexibilidade.',
+        destaque: true
+    },
+    anual: {
+        nome: 'Anual',
+        meses: 12,
+        precoPorAtividade: 74.90,
+        descricao: 'O menor valor mensal para quem treina o ano todo.'
+    }
+};
+
+const ATIVIDADES_PERMITIDAS = ['musculacao', 'taekwondo', 'fit-dance'];
+
 const DIAS_COLUNAS = {
     segunda: 0,
     terca: 1,
@@ -47,7 +78,13 @@ function aoCarregar() {
         formulario.addEventListener('input', aoEditarCampo);
         formulario.addEventListener('change', aoEditarCampo);
         configurarDialogo();
+        configurarBotoesSenha();
+        preencherPrecosDosPlanos();
+        aplicarPlanoDaUrl();
+        atualizarTotalPlano();
     }
+
+    renderizarPlanosHome();
 
     if (document.getElementById('corpo-tabela')) {
         carregarTabela();
@@ -62,7 +99,243 @@ function aoEditarCampo(evento) {
             aplicarMascaraTelefone(campo);
         }
 
+        if (campo.name === 'peso') {
+            filtrarPeso(campo);
+        }
+
+        if (campo.name === 'plano' || campo.name === 'atividade') {
+            atualizarTotalPlano();
+        }
+
         limparEstadoCampo(campo);
+    }
+}
+
+/* ------------------------- Visualizar senha ------------------------- */
+
+function configurarBotoesSenha() {
+    document.querySelectorAll('[data-alternar-senha]').forEach((botao) => {
+        botao.addEventListener('click', () => {
+            const campo = document.getElementById(botao.dataset.alternarSenha);
+
+            if (!campo) {
+                return;
+            }
+
+            const ficaraVisivel = campo.type === 'password';
+
+            campo.type = ficaraVisivel ? 'text' : 'password';
+            botao.setAttribute('aria-label', ficaraVisivel ? 'Ocultar senha' : 'Mostrar senha');
+            // Em elementos SVG, hidden não é uma propriedade refletida: use o atributo.
+            botao.querySelector('.icone-olho').toggleAttribute('hidden', ficaraVisivel);
+            botao.querySelector('.icone-olho-riscado').toggleAttribute('hidden', !ficaraVisivel);
+        });
+    });
+}
+
+/* ----------------------------- Planos ----------------------------- */
+
+function formatarMoeda(valor) {
+    return Number(valor).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+}
+
+function preencherPrecosDosPlanos() {
+    Object.entries(PLANOS).forEach(([chave, plano]) => {
+        const preco = document.querySelector(`[data-preco-plano="${chave}"]`);
+        const total = document.querySelector(`[data-total-plano="${chave}"]`);
+
+        if (preco) {
+            preco.textContent = formatarMoeda(plano.precoPorAtividade);
+        }
+
+        if (total) {
+            total.textContent = plano.meses === 1
+                ? 'Cobrança mensal por atividade'
+                : `Total de ${formatarMoeda(plano.precoPorAtividade * plano.meses)} por atividade`;
+        }
+    });
+}
+
+/* Cards de plano da home, gerados a partir do mesmo objeto PLANOS */
+function renderizarPlanosHome() {
+    const container = document.getElementById('planos-cards');
+
+    if (!container) {
+        return;
+    }
+
+    const precoBase = PLANOS.mensal.precoPorAtividade;
+
+    Object.entries(PLANOS).forEach(([chave, plano]) => {
+        const card = document.createElement('article');
+        card.className = 'plano-home';
+
+        if (plano.destaque) {
+            card.classList.add('plano-home--destaque');
+
+            const selo = document.createElement('p');
+            selo.className = 'plano-home-selo';
+            selo.textContent = 'Mais popular';
+            card.appendChild(selo);
+        }
+
+        const nome = document.createElement('h3');
+        nome.textContent = plano.nome;
+        card.appendChild(nome);
+
+        const descricao = document.createElement('p');
+        descricao.className = 'plano-home-descricao';
+        descricao.textContent = plano.descricao;
+        card.appendChild(descricao);
+
+        const preco = document.createElement('p');
+        preco.className = 'plano-home-preco';
+
+        const valor = document.createElement('span');
+        valor.className = 'plano-home-valor';
+        valor.textContent = formatarMoeda(plano.precoPorAtividade);
+
+        const periodo = document.createElement('span');
+        periodo.className = 'plano-home-periodo';
+        periodo.textContent = '/mês';
+
+        preco.append(valor, periodo);
+        card.appendChild(preco);
+
+        const porAtividade = document.createElement('p');
+        porAtividade.className = 'plano-home-por';
+        porAtividade.textContent = 'por atividade';
+        card.appendChild(porAtividade);
+
+        const total = document.createElement('p');
+        total.className = 'plano-home-total';
+        total.textContent = plano.meses === 1
+            ? 'Cobrança mensal por atividade.'
+            : `Total de ${formatarMoeda(plano.precoPorAtividade * plano.meses)} por atividade no período de ${plano.meses} meses.`;
+        card.appendChild(total);
+
+        const desconto = Math.round((1 - plano.precoPorAtividade / precoBase) * 100);
+
+        if (desconto > 0) {
+            const economia = document.createElement('p');
+            economia.className = 'plano-home-economia';
+            economia.textContent = `${desconto}% de desconto em relação ao mensal`;
+            card.appendChild(economia);
+        }
+
+        const link = document.createElement('a');
+        link.className = plano.destaque ? 'btn btn-principal' : 'btn btn-plano';
+        link.href = `cadastro.html?plano=${encodeURIComponent(chave)}`;
+        link.textContent = 'Quero esse plano';
+        link.setAttribute('aria-label', `Quero o plano ${plano.nome}`);
+        card.appendChild(link);
+
+        container.appendChild(card);
+    });
+}
+
+/* Pré-seleciona no cadastro o plano indicado pela URL (?plano=trimestral) */
+function aplicarPlanoDaUrl() {
+    const chave = new URLSearchParams(window.location.search).get('plano');
+
+    if (!chave || !Object.prototype.hasOwnProperty.call(PLANOS, chave)) {
+        return;
+    }
+
+    const radio = document.getElementById(`plano-${chave}`);
+
+    if (radio) {
+        radio.checked = true;
+        atualizarTotalPlano();
+    }
+}
+
+function calcularTotalPlano(formulario) {
+    const planoSelecionado = formulario.querySelector('input[name="plano"]:checked');
+    const atividades = obterAtividadesSelecionadas(formulario);
+
+    if (!planoSelecionado || !PLANOS[planoSelecionado.value] || atividades.length === 0) {
+        return null;
+    }
+
+    const plano = PLANOS[planoSelecionado.value];
+
+    return {
+        plano,
+        quantidadeAtividades: atividades.length,
+        total: plano.precoPorAtividade * plano.meses * atividades.length
+    };
+}
+
+function atualizarTotalPlano() {
+    const formulario = document.getElementById('form-cadastro');
+    const valor = document.getElementById('total-plano');
+    const detalhe = document.getElementById('total-plano-detalhe');
+
+    if (!formulario || !valor || !detalhe) {
+        return;
+    }
+
+    const calculo = calcularTotalPlano(formulario);
+
+    if (!calculo) {
+        const planoSelecionado = formulario.querySelector('input[name="plano"]:checked');
+        const atividades = obterAtividadesSelecionadas(formulario);
+
+        valor.textContent = formatarMoeda(0);
+
+        if (planoSelecionado && atividades.length === 0) {
+            detalhe.textContent = 'Agora selecione pelo menos uma atividade.';
+        } else if (!planoSelecionado && atividades.length > 0) {
+            detalhe.textContent = 'Agora escolha um plano.';
+        } else {
+            detalhe.textContent = 'Selecione um plano e pelo menos uma atividade.';
+        }
+
+        return;
+    }
+
+    const { plano, quantidadeAtividades, total } = calculo;
+    const rotuloAtividades = quantidadeAtividades === 1 ? 'atividade' : 'atividades';
+    const rotuloMeses = plano.meses === 1 ? 'mês' : 'meses';
+    const mensal = plano.precoPorAtividade * quantidadeAtividades;
+
+    valor.textContent = formatarMoeda(total);
+    detalhe.textContent = `${quantidadeAtividades} ${rotuloAtividades} · ${formatarMoeda(mensal)}/mês · ${plano.meses} ${rotuloMeses}`;
+}
+
+/* ------------------------- Campo de peso ------------------------- */
+
+function filtrarPeso(campo) {
+    const original = campo.value;
+    const posicao = campo.selectionStart ?? original.length;
+    let resultado = '';
+    let separadorVisto = false;
+    let removidosAntesDoCursor = 0;
+
+    for (let i = 0; i < original.length; i++) {
+        const caractere = original[i];
+        const ehDigito = /\d/.test(caractere);
+        const ehSeparador = (caractere === ',' || caractere === '.') && !separadorVisto;
+
+        if (ehDigito || ehSeparador) {
+            resultado += caractere;
+
+            if (ehSeparador) {
+                separadorVisto = true;
+            }
+        } else if (i < posicao) {
+            removidosAntesDoCursor += 1;
+        }
+    }
+
+    if (resultado !== original) {
+        campo.value = resultado;
+
+        if (document.activeElement === campo) {
+            const novaPosicao = Math.max(0, posicao - removidosAntesDoCursor);
+            campo.setSelectionRange(novaPosicao, novaPosicao);
+        }
     }
 }
 
@@ -242,29 +515,40 @@ function validarSenha(valor) {
     return { valido: true, mensagem: '' };
 }
 
-function validarAtividade(valor) {
-    const permitidas = ['musculacao', 'taekwondo', 'fit-dance'];
+function obterAtividadesSelecionadas(formulario) {
+    return Array.from(
+        formulario.querySelectorAll('input[name="atividade"]:checked'),
+        (campo) => campo.value
+    );
+}
 
-    if (!permitidas.includes(valor)) {
-        return { valido: false, mensagem: 'Escolha uma atividade.' };
+function validarAtividades(valores) {
+    if (!Array.isArray(valores) || valores.length === 0) {
+        return { valido: false, mensagem: 'Selecione pelo menos uma atividade.' };
+    }
+
+    if (valores.some((valor) => !ATIVIDADES_PERMITIDAS.includes(valor))) {
+        return { valido: false, mensagem: 'Selecione apenas atividades disponíveis.' };
     }
 
     return { valido: true, mensagem: '' };
 }
 
 function validarPlano(valor) {
-    const permitidos = ['mensal', 'trimestral', 'anual'];
-
-    if (!permitidos.includes(valor)) {
+    if (!Object.prototype.hasOwnProperty.call(PLANOS, valor)) {
         return { valido: false, mensagem: 'Escolha um plano.' };
     }
 
     return { valido: true, mensagem: '' };
 }
 
-function validarHorarios(valores) {
-    if (!Array.isArray(valores) || valores.length === 0) {
-        return { valido: false, mensagem: 'Selecione pelo menos um período de preferência.' };
+function validarConfirmacaoSenha(senha, confirmacao) {
+    if (!confirmacao) {
+        return { valido: false, mensagem: 'Confirme a senha.' };
+    }
+
+    if (senha !== confirmacao) {
+        return { valido: false, mensagem: 'As senhas não conferem.' };
     }
 
     return { valido: true, mensagem: '' };
@@ -328,19 +612,17 @@ function validarFormulario(evento) {
         telefone: formulario.elements.namedItem('telefone'),
         nascimento: formulario.elements.namedItem('nascimento'),
         senha: formulario.elements.namedItem('senha'),
-        atividade: formulario.elements.namedItem('atividade'),
-        experiencia: formulario.elements.namedItem('experiencia'),
+        confirmarSenha: formulario.elements.namedItem('confirmar-senha'),
         peso: formulario.elements.namedItem('peso'),
         observacoes: formulario.elements.namedItem('observacoes'),
         termos: formulario.elements.namedItem('termos')
     };
+    const atividadeReferencia = formulario.querySelector('input[name="atividade"]');
     const planoReferencia = formulario.querySelector('input[name="plano"]');
-    const horariosReferencia = formulario.querySelector('input[name="horarios"]');
+    const experienciaReferencia = formulario.querySelector('input[name="experiencia"]');
     const planoSelecionado = formulario.querySelector('input[name="plano"]:checked');
-    const horariosSelecionados = Array.from(
-        formulario.querySelectorAll('input[name="horarios"]:checked'),
-        (campo) => campo.value
-    );
+    const experienciaSelecionada = formulario.querySelector('input[name="experiencia"]:checked');
+    const atividadesSelecionadas = obterAtividadesSelecionadas(formulario);
 
     const verificacoes = [
         [campos.nome, validarNome(campos.nome.value)],
@@ -348,10 +630,10 @@ function validarFormulario(evento) {
         [campos.telefone, validarTelefone(campos.telefone.value)],
         [campos.nascimento, validarNascimento(campos.nascimento.value)],
         [campos.senha, validarSenha(campos.senha.value)],
-        [campos.atividade, validarAtividade(campos.atividade.value)],
+        [campos.confirmarSenha, validarConfirmacaoSenha(campos.senha.value, campos.confirmarSenha.value)],
+        [atividadeReferencia, validarAtividades(atividadesSelecionadas)],
         [planoReferencia, validarPlano(planoSelecionado ? planoSelecionado.value : '')],
-        [horariosReferencia, validarHorarios(horariosSelecionados)],
-        [campos.experiencia, validarExperiencia(campos.experiencia.value)],
+        [experienciaReferencia, validarExperiencia(experienciaSelecionada ? experienciaSelecionada.value : '')],
         [campos.peso, validarPeso(campos.peso.value)],
         [campos.observacoes, validarObservacoes(campos.observacoes.value)],
         [campos.termos, validarTermos(campos.termos.checked)]
@@ -457,29 +739,38 @@ function limparEstadoCampo(campo) {
 function coletarDados(formulario) {
     const valor = (nome) => formulario.elements.namedItem(nome).value;
     const plano = formulario.querySelector('input[name="plano"]:checked');
-    const rotulosHorarios = { manha: 'Manhã', tarde: 'Tarde', noite: 'Noite' };
-    const horarios = Array.from(
-        formulario.querySelectorAll('input[name="horarios"]:checked'),
-        (campo) => rotulosHorarios[campo.value] || campo.value
+    const experiencia = formulario.querySelector('input[name="experiencia"]:checked');
+    const atividades = Array.from(
+        formulario.querySelectorAll('input[name="atividade"]:checked'),
+        (campo) => (campo.labels && campo.labels.length ? campo.labels[0].textContent.trim() : campo.value)
     );
-    const rotuloPlano = plano
-        ? (plano.labels && plano.labels.length ? plano.labels[0].textContent.trim() : plano.value)
-        : '';
+    const rotuloPlano = plano && PLANOS[plano.value] ? PLANOS[plano.value].nome : '';
+    const calculoTotal = calcularTotalPlano(formulario);
+    const peso = valor('peso').trim();
 
     return {
         'Nome': valor('nome').trim(),
         'E-mail': valor('email').trim(),
         'Telefone': valor('telefone').trim(),
         'Data de nascimento': formatarData(valor('nascimento')),
-        'Atividade': formulario.elements.namedItem('atividade').selectedOptions[0].textContent.trim(),
+        'Atividades': atividades.join(', '),
         'Plano': rotuloPlano,
-        'Horários preferidos': horarios.join(', '),
-        'Nível de experiência': `${valor('experiencia')} de 5`,
-        'Peso': valor('peso') ? `${valor('peso').replace('.', ',')} kg` : 'Não informado',
+        'Total do plano': calculoTotal ? formatarMoeda(calculoTotal.total) : '—',
+        'Nível de experiência': experiencia ? `${experiencia.value} de 5` : '',
+        'Peso': peso ? formatarPeso(peso) : 'Não informado',
         'Observações': valor('observacoes').trim() || 'Nenhuma',
-        'Senha': '••••••••',
         'Termos de uso': 'Aceitos'
     };
+}
+
+function formatarPeso(valor) {
+    const numero = Number(String(valor).replace(',', '.'));
+
+    if (!Number.isFinite(numero)) {
+        return '';
+    }
+
+    return `${numero.toLocaleString('pt-BR', { maximumFractionDigits: 2 })} kg`;
 }
 
 function formatarData(valor) {

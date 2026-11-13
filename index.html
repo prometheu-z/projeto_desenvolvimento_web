@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Início | Academia Bem-Estar</title>
+  <link rel="icon" href="img/logo.jpg" type="image/jpeg">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -12,7 +13,7 @@
     <nav class="navbar navbar-expand-lg" aria-label="Principal">
       <div class="container">
         <a class="navbar-brand" href="index.html">
-          <img src="img/logo.jpg" alt="Logotipo da Academia Bem-Estar" width="115" height="64" class="d-inline-block align-text-top">
+          <img src="img/logo.jpg" alt="Logotipo da Academia Bem-Estar" width="150" height="84" class="d-inline-block align-text-top">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-principal"
                 aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir e fechar o menu de navegação">
@@ -40,7 +41,7 @@
           Um só lugar para quem quer ganhar força, aprender uma arte marcial ou se divertir dançando.
           Musculação, Taekwondo e Fit Dance com acompanhamento de profissionais.
         </p>
-        <p><a class="btn btn-principal btn-lg" href="cadastro.html">Quero me matricular</a></p>
+        <p><a class="btn btn-principal btn-lg" href="#planos">Quero me matricular</a></p>
       </div>
     </section>
 
@@ -52,82 +53,151 @@
           experientes, com turmas em horários variados.
         </p>
         <div class="row align-items-stretch">
-          <article class="card-modalidade col-md-4 d-flex flex-column mb-4">
-            <img src="img/musc.jpg" alt="Aluno treinando musculação com halteres na sala de pesos" width="1080" height="1080" loading="lazy" class="img-fluid img-card">
+          <article class="card-modalidade col-md-4 d-flex flex-column mb-4 position-relative">
+            <img src="img/musc.jpg" alt="Aluno treinando musculação com halteres na sala de pesos" width="800" height="600" loading="lazy" class="img-card img-padrao">
             <div class="d-flex flex-column flex-grow-1 mt-3">
               <h3>Musculação</h3>
               <p class="flex-grow-1">
                 Treino de força com acompanhamento profissional, focado em saúde, postura e condicionamento físico.
               </p>
-              <p class="mt-auto"><a href="musculacao.html">Conheça a musculação</a></p>
+              <p class="mt-auto"><a class="stretched-link" href="musculacao.html">Conheça a musculação</a></p>
             </div>
           </article>
 
-          <article class="card-modalidade col-md-4 d-flex flex-column mb-4">
-            <img src="img/lutas.jpg" alt="Alunos praticando Taekwondo com uniforme e faixas" width="364" height="549" loading="lazy" class="img-fluid img-card">
+          <article class="card-modalidade col-md-4 d-flex flex-column mb-4 position-relative">
+            <img src="img/lutas.jpg" alt="Dois atletas de Taekwondo com uniforme branco e faixa preta" width="800" height="600" loading="lazy" class="img-card img-padrao img-padrao--topo">
             <div class="d-flex flex-column flex-grow-1 mt-3">
               <h3>Luta (Taekwondo)</h3>
               <p class="flex-grow-1">
                 Arte marcial coreana que desenvolve disciplina, reflexo e defesa pessoal por meio de golpes e formas.
               </p>
-              <p class="mt-auto"><a href="luta.html">Conheça o Taekwondo</a></p>
+              <p class="mt-auto"><a class="stretched-link" href="luta.html">Conheça o Taekwondo</a></p>
             </div>
           </article>
 
-          <article class="card-modalidade col-md-4 d-flex flex-column mb-4">
-            <img src="img/fitdance.jpg" alt="Turma de Fit Dance se exercitando ao som de música" width="1800" height="1200" loading="lazy" class="img-fluid img-card">
+          <article class="card-modalidade col-md-4 d-flex flex-column mb-4 position-relative">
+            <img src="img/fitdance.jpg" alt="Turma de Fit Dance se exercitando ao som de música" width="800" height="600" loading="lazy" class="img-card img-padrao">
             <div class="d-flex flex-column flex-grow-1 mt-3">
               <h3>Dança (Fit Dance)</h3>
               <p class="flex-grow-1">
                 Aula coletiva que mistura coreografias e exercícios aeróbicos para queimar calorias com leveza.
               </p>
-              <p class="mt-auto"><a href="danca.html">Conheça o Fit Dance</a></p>
+              <p class="mt-auto"><a class="stretched-link" href="danca.html">Conheça o Fit Dance</a></p>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section aria-labelledby="titulo-depoimento">
+    <section id="planos" aria-labelledby="titulo-planos">
       <div class="container">
-        <h2 id="titulo-depoimento">O que dizem nossos alunos</h2>
-        <figure>
-          <blockquote>
-            <p>
-              Comecei na musculação sem experiência nenhuma e em poucos meses já me sentia mais disposto no dia a dia.
-              A equipe acompanha a gente de perto.
-            </p>
-          </blockquote>
-          <figcaption>Depoimento de aluno — <cite>turma de musculação</cite></figcaption>
-        </figure>
+        <h2 id="titulo-planos">Planos</h2>
+        <p>
+          Escolha o plano que combina com a sua rotina. O valor é por atividade e você pode somar mais de uma
+          modalidade no cadastro.
+        </p>
+        <div class="planos-home" id="planos-cards">
+          <noscript>
+            <p>Ative o JavaScript para ver os planos e os preços atualizados.</p>
+          </noscript>
+        </div>
+        <p class="planos-home-observacao">
+          O total do período é calculado conforme o plano e a quantidade de atividades escolhidas.
+        </p>
       </div>
     </section>
 
-    <section aria-labelledby="titulo-midia">
+    <section aria-labelledby="titulo-beneficios">
       <div class="container">
-        <h2 id="titulo-midia">Conheça a nossa academia</h2>
+        <h2 id="titulo-beneficios">Benefícios da academia</h2>
         <p>
-          Ouça o áudio de boas-vindas com as principais orientações para quem está chegando agora.
+          Estrutura, equipe e acompanhamento para você treinar com segurança e constância em qualquer modalidade.
         </p>
-        <figure>
-          <audio controls>
-            <source src="midia/boas_vindas.mp3" type="audio/mpeg">
-            Seu navegador não suporta o elemento de áudio.
-            <a href="midia/boas_vindas.mp3">Baixe o arquivo de áudio de boas-vindas</a>.
-          </audio>
-          <figcaption>Áudio de boas-vindas da Academia Bem-Estar.</figcaption>
-        </figure>
+        <ul class="beneficios-grid beneficios-grid--home">
+          <li class="beneficio-card">
+            <svg class="beneficio-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="m16 11 2 2 4-4"/>
+            </svg>
+            <h3>Profissionais qualificados</h3>
+            <p>Equipe de educação física e professores especializados em cada modalidade.</p>
+          </li>
+          <li class="beneficio-card">
+            <svg class="beneficio-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M6.5 6.5v11M17.5 6.5v11M3 9v6M21 9v6M6.5 12h11"/>
+            </svg>
+            <h3>Equipamentos modernos</h3>
+            <p>Máquinas, pesos livres e materiais revisados para treinos seguros e variados.</p>
+          </li>
+          <li class="beneficio-card">
+            <svg class="beneficio-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="m12 2 9 5-9 5-9-5 9-5Z"/>
+              <path d="m3 12 9 5 9-5"/>
+              <path d="m3 17 9 5 9-5"/>
+            </svg>
+            <h3>Turmas para todos os níveis</h3>
+            <p>Do primeiro treino ao avançado, com orientação adequada ao seu ritmo.</p>
+          </li>
+          <li class="beneficio-card">
+            <svg class="beneficio-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M12 7v5l3 2"/>
+            </svg>
+            <h3>Horário amplo</h3>
+            <p>Aulas de segunda a sábado, em horários que cabem na sua rotina.</p>
+          </li>
+          <li class="beneficio-card">
+            <svg class="beneficio-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/>
+            </svg>
+            <h3>Ambiente acolhedor</h3>
+            <p>Espaço pensado para você se sentir bem desde a primeira visita.</p>
+          </li>
+          <li class="beneficio-card">
+            <svg class="beneficio-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M9 2h6v4H9z"/>
+              <path d="M9 4H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/>
+              <path d="m9 14 2 2 4-4"/>
+            </svg>
+            <h3>Acompanhamento individual</h3>
+            <p>Avaliação e orientação para ajustar o treino aos seus objetivos.</p>
+          </li>
+        </ul>
       </div>
     </section>
 
-    <section aria-labelledby="titulo-chamada">
+    <section class="secao-ct" aria-labelledby="titulo-ct">
       <div class="container">
-        <h2 id="titulo-chamada">Pronto para começar?</h2>
-        <p>
-          O cadastro é rápido e gratuito. Escolha a sua atividade, informe o seu horário preferido e nós entramos
-          em contato para marcar a sua aula experimental.
+        <h2 id="titulo-ct">Conheça o nosso CT</h2>
+        <p class="ct-intro">
+          Um centro de treinamento amplo, com sala de pesos, equipamentos de cardio e espaço para as aulas
+          coletivas. Tudo em um só lugar para você treinar com conforto.
         </p>
-        <p><a class="btn btn-principal" href="cadastro.html">Fazer meu cadastro</a></p>
+        <figure class="ct-figura">
+          <img src="img/heroacademia.jpg"
+               alt="Vista ampla do centro de treinamento, com sala de pesos, esteiras e equipamentos"
+               width="612" height="459" loading="lazy" class="ct-imagem">
+          <figcaption>Centro de treinamento da Academia Bem-Estar — imagem ilustrativa.</figcaption>
+        </figure>
+        <div class="ct-audio">
+          <h3>Boas-vindas em áudio</h3>
+          <p>Ouça as principais orientações para quem está chegando agora.</p>
+          <figure>
+            <audio controls>
+              <source src="midia/boas_vindas.mp3" type="audio/mpeg">
+              Seu navegador não suporta o elemento de áudio.
+              <a href="midia/boas_vindas.mp3">Baixe o arquivo de áudio de boas-vindas</a>.
+            </audio>
+            <figcaption>Áudio de boas-vindas da Academia Bem-Estar.</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
   </main>

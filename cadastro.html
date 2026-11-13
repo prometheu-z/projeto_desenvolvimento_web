@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cadastro | Academia Bem-Estar</title>
+  <link rel="icon" href="img/logo.jpg" type="image/jpeg">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -12,7 +13,7 @@
     <nav class="navbar navbar-expand-lg" aria-label="Principal">
       <div class="container">
         <a class="navbar-brand" href="index.html">
-          <img src="img/logo.jpg" alt="Logotipo da Academia Bem-Estar" width="115" height="64" class="d-inline-block align-text-top">
+          <img src="img/logo.jpg" alt="Logotipo da Academia Bem-Estar" width="150" height="84" class="d-inline-block align-text-top">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-principal"
                 aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir e fechar o menu de navegação">
@@ -37,8 +38,9 @@
       <div class="container">
         <h1 id="titulo-cadastro">Cadastro</h1>
         <p>
-          Preencha o formulário abaixo para reservar a sua aula experimental. Todos os campos obrigatórios estão
-          indicados e a validação é feita automaticamente antes do envio.
+          Preencha o formulário abaixo para escolher as suas atividades e o seu plano. Também é por aqui que você
+          agenda a sua aula experimental. Todos os campos obrigatórios estão indicados e a validação é feita
+          automaticamente antes do envio.
         </p>
 
         <!-- novalidate: a validação é feita por JavaScript -->
@@ -80,9 +82,50 @@
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="senha" class="form-label">Senha</label>
-                <input type="password" class="form-control" id="senha" name="senha"
-                       minlength="8" autocomplete="new-password" required>
+                <div class="input-group">
+                  <input type="password" class="form-control" id="senha" name="senha"
+                         minlength="8" autocomplete="new-password" required>
+                  <button type="button" class="btn btn-olho" data-alternar-senha="senha"
+                          aria-label="Mostrar senha">
+                    <svg class="icone-olho" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                      <path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12Z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    <svg class="icone-olho-riscado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" hidden>
+                      <path d="m3 3 18 18"/>
+                      <path d="M10.6 6.1A10.9 10.9 0 0 1 12 6c6.5 0 10 6 10 6a17.7 17.7 0 0 1-3.2 3.9"/>
+                      <path d="M6.6 6.7A17.5 17.5 0 0 0 2 12s3.5 6 10 6a10.8 10.8 0 0 0 4.2-.8"/>
+                      <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/>
+                    </svg>
+                  </button>
+                </div>
                 <p class="form-text">Mínimo de 8 caracteres, com pelo menos uma letra e um número.</p>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="confirmar-senha" class="form-label">Confirmar senha</label>
+                <div class="input-group">
+                  <input type="password" class="form-control" id="confirmar-senha" name="confirmar-senha"
+                         minlength="8" autocomplete="new-password" required>
+                  <button type="button" class="btn btn-olho" data-alternar-senha="confirmar-senha"
+                          aria-label="Mostrar senha">
+                    <svg class="icone-olho" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                      <path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12Z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    <svg class="icone-olho-riscado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" hidden>
+                      <path d="m3 3 18 18"/>
+                      <path d="M10.6 6.1A10.9 10.9 0 0 1 12 6c6.5 0 10 6 10 6a17.7 17.7 0 0 1-3.2 3.9"/>
+                      <path d="M6.6 6.7A17.5 17.5 0 0 0 2 12s3.5 6 10 6a10.8 10.8 0 0 0 4.2-.8"/>
+                      <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/>
+                    </svg>
+                  </button>
+                </div>
+                <p class="form-text">Repita a senha digitada acima.</p>
               </div>
             </div>
           </fieldset>
@@ -90,66 +133,106 @@
           <fieldset class="mb-4">
             <legend>Modalidade e plano</legend>
 
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="atividade" class="form-label">Atividade</label>
-                <select class="form-select" id="atividade" name="atividade" required>
-                  <option value="" selected disabled>Escolha uma atividade</option>
-                  <option value="musculacao">Musculação</option>
-                  <option value="taekwondo">Taekwondo</option>
-                  <option value="fit-dance">Fit Dance</option>
-                </select>
-              </div>
-
-              <fieldset class="col-md-6 mb-3">
-                <legend class="form-label fs-6">Plano</legend>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="plano" id="plano-mensal" value="mensal" required>
-                  <label class="form-check-label" for="plano-mensal">Mensal</label>
+            <fieldset class="mb-4">
+              <legend class="form-label fs-6">Atividades</legend>
+              <p class="form-text">Selecione uma ou mais modalidades.</p>
+              <div class="atividades-opcoes">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" name="atividade" id="atividade-musculacao" value="musculacao">
+                  <label class="form-check-label" for="atividade-musculacao">Musculação</label>
                 </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="plano" id="plano-trimestral" value="trimestral">
-                  <label class="form-check-label" for="plano-trimestral">Trimestral</label>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" name="atividade" id="atividade-taekwondo" value="taekwondo">
+                  <label class="form-check-label" for="atividade-taekwondo">Taekwondo</label>
                 </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="plano" id="plano-anual" value="anual">
-                  <label class="form-check-label" for="plano-anual">Anual</label>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" name="atividade" id="atividade-fit-dance" value="fit-dance">
+                  <label class="form-check-label" for="atividade-fit-dance">Fit Dance</label>
                 </div>
-              </fieldset>
-            </div>
-
-            <fieldset class="mb-3">
-              <legend class="form-label fs-6">Horários preferidos</legend>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="horarios" id="horario-manha" value="manha">
-                <label class="form-check-label" for="horario-manha">Manhã</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="horarios" id="horario-tarde" value="tarde">
-                <label class="form-check-label" for="horario-tarde">Tarde</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="horarios" id="horario-noite" value="noite">
-                <label class="form-check-label" for="horario-noite">Noite</label>
               </div>
             </fieldset>
+
+            <fieldset class="mb-3">
+              <legend class="form-label fs-6">Plano</legend>
+              <p class="form-text">Valores por atividade. Escolha um plano para ver o total.</p>
+              <div class="planos-grid">
+                <div class="plano-card">
+                  <input class="plano-radio" type="radio" name="plano" id="plano-mensal" value="mensal">
+                  <label class="plano-label" for="plano-mensal">
+                    <span class="plano-nome">Mensal</span>
+                    <span class="plano-preco" data-preco-plano="mensal"></span>
+                    <span class="plano-periodo">por mês · por atividade</span>
+                    <span class="plano-total" data-total-plano="mensal"></span>
+                  </label>
+                </div>
+
+                <div class="plano-card">
+                  <input class="plano-radio" type="radio" name="plano" id="plano-trimestral" value="trimestral">
+                  <label class="plano-label" for="plano-trimestral">
+                    <span class="plano-nome">Trimestral</span>
+                    <span class="plano-preco" data-preco-plano="trimestral"></span>
+                    <span class="plano-periodo">por mês · por atividade</span>
+                    <span class="plano-total" data-total-plano="trimestral"></span>
+                  </label>
+                </div>
+
+                <div class="plano-card">
+                  <input class="plano-radio" type="radio" name="plano" id="plano-anual" value="anual">
+                  <label class="plano-label" for="plano-anual">
+                    <span class="plano-nome">Anual</span>
+                    <span class="plano-preco" data-preco-plano="anual"></span>
+                    <span class="plano-periodo">por mês · por atividade</span>
+                    <span class="plano-total" data-total-plano="anual"></span>
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="total-plano" role="status" aria-live="polite">
+              <p class="total-plano-rotulo">Total do plano</p>
+              <p class="total-plano-valor" id="total-plano">R$ 0,00</p>
+              <p class="total-plano-detalhe" id="total-plano-detalhe">
+                Selecione um plano e pelo menos uma atividade.
+              </p>
+            </div>
           </fieldset>
 
           <fieldset class="mb-4">
             <legend>Perfil e observações</legend>
 
             <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="experiencia" class="form-label">Nível de experiência (1 a 5)</label>
-                <input type="range" class="form-range" id="experiencia" name="experiencia"
-                       min="1" max="5" step="1" value="3">
+              <fieldset class="col-md-6 mb-3">
+                <legend class="form-label fs-6">Nível de experiência</legend>
+                <div class="experiencia-opcoes">
+                  <div class="experiencia-opcao">
+                    <input class="experiencia-radio" type="radio" name="experiencia" id="experiencia-1" value="1">
+                    <label class="experiencia-bolinha" for="experiencia-1">1</label>
+                  </div>
+                  <div class="experiencia-opcao">
+                    <input class="experiencia-radio" type="radio" name="experiencia" id="experiencia-2" value="2">
+                    <label class="experiencia-bolinha" for="experiencia-2">2</label>
+                  </div>
+                  <div class="experiencia-opcao">
+                    <input class="experiencia-radio" type="radio" name="experiencia" id="experiencia-3" value="3" checked>
+                    <label class="experiencia-bolinha" for="experiencia-3">3</label>
+                  </div>
+                  <div class="experiencia-opcao">
+                    <input class="experiencia-radio" type="radio" name="experiencia" id="experiencia-4" value="4">
+                    <label class="experiencia-bolinha" for="experiencia-4">4</label>
+                  </div>
+                  <div class="experiencia-opcao">
+                    <input class="experiencia-radio" type="radio" name="experiencia" id="experiencia-5" value="5">
+                    <label class="experiencia-bolinha" for="experiencia-5">5</label>
+                  </div>
+                </div>
                 <p class="form-text">1 = nenhuma experiência; 5 = muita experiência.</p>
-              </div>
+              </fieldset>
 
               <div class="col-md-6 mb-3">
                 <label for="peso" class="form-label">Peso (kg) <span class="text-muted">— opcional</span></label>
-                <input type="number" class="form-control" id="peso" name="peso"
-                       min="30" max="300" step="0.1" inputmode="decimal" placeholder="Ex.: 72.5">
+                <input type="text" class="form-control" id="peso" name="peso"
+                       inputmode="decimal" autocomplete="off" placeholder="Ex.: 72,5">
+                <p class="form-text">Aceita vírgula ou ponto como separador decimal.</p>
               </div>
 
               <div class="col-12 mb-3">

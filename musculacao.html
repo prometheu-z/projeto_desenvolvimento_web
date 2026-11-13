@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Musculação | Academia Bem-Estar</title>
+  <link rel="icon" href="img/logo.jpg" type="image/jpeg">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -12,7 +13,7 @@
     <nav class="navbar navbar-expand-lg" aria-label="Principal">
       <div class="container">
         <a class="navbar-brand" href="index.html">
-          <img src="img/logo.jpg" alt="Logotipo da Academia Bem-Estar" width="115" height="64" class="d-inline-block align-text-top">
+          <img src="img/logo.jpg" alt="Logotipo da Academia Bem-Estar" width="150" height="84" class="d-inline-block align-text-top">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-principal"
                 aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir e fechar o menu de navegação">
@@ -33,7 +34,7 @@
   </header>
 
   <main>
-    <section aria-labelledby="titulo-musculacao">
+    <section id="sobre" aria-labelledby="titulo-musculacao">
       <div class="container">
         <h1 id="titulo-musculacao">Musculação</h1>
         <p>
@@ -41,83 +42,118 @@
           de forma progressiva. Os treinos são montados de acordo com o objetivo de cada aluno.
         </p>
 
-        <ul class="nav nav-tabs" id="abas-musculacao" role="tablist">
-          <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="aba-sobre" data-bs-toggle="tab" data-bs-target="#painel-sobre"
-                    type="button" role="tab" aria-controls="painel-sobre" aria-selected="true">Sobre</button>
+        <nav class="indice-pagina" aria-label="Índice da página">
+          <p class="indice-titulo">Nesta página</p>
+          <ul class="indice-lista" role="list">
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#beneficios-musculacao">Benefícios</a></li>
+            <li><a href="#pre-avaliacao">Pré-avaliação</a></li>
+          </ul>
+        </nav>
+
+        <h2>Como funcionam os treinos</h2>
+        <p>
+          Cada aluno recebe uma ficha de treino própria, revisada a cada ciclo de oito semanas. Os exercícios
+          combinam força, resistência e mobilidade, sempre respeitando o ritmo de cada pessoa.
+        </p>
+
+        <figure class="foto-conteudo">
+          <img src="img/musc.jpg" alt="Aluno treinando musculação com halteres na sala de pesos" width="800" height="600" loading="lazy" class="img-padrao">
+          <figcaption>Sala de musculação com equipamentos para treino de força.</figcaption>
+        </figure>
+
+        <h3>Para quem é indicada</h3>
+        <p>
+          A modalidade atende iniciantes, alunos em retorno após lesão e praticantes avançados. Não é necessário
+          ter experiência prévia: o primeiro mês é dedicado à adaptação e à técnica correta dos movimentos.
+        </p>
+      </div>
+    </section>
+
+    <section id="beneficios-musculacao" aria-labelledby="titulo-beneficios-musculacao">
+      <div class="container">
+        <h2 id="titulo-beneficios-musculacao">Benefícios da musculação</h2>
+        <p>
+          Os treinos são planejados para trazer resultados consistentes, respeitando o ritmo e os objetivos de cada aluno.
+        </p>
+
+        <ul class="beneficios-grid">
+          <li class="beneficio-card">
+            <svg class="beneficio-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M6.5 6.5v11M3.5 9v5M17.5 6.5v11M20.5 9v5M6.5 12h11"/>
+            </svg>
+            <h3>Força e massa muscular</h3>
+            <p>Treino progressivo para ganhar força e definição com segurança.</p>
           </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="aba-pre-avaliacao" data-bs-toggle="tab" data-bs-target="#painel-pre-avaliacao"
-                    type="button" role="tab" aria-controls="painel-pre-avaliacao" aria-selected="false">Pré-avaliação com profissional</button>
+
+          <li class="beneficio-card">
+            <svg class="beneficio-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="4.5" r="2"/>
+              <path d="M12 7.5v6M12 9.5 8.5 12M12 9.5l3.5 2.5M12 13.5 9 21M12 13.5 15 21"/>
+            </svg>
+            <h3>Postura e articulações</h3>
+            <p>Exercícios orientados que corrigem a postura e protegem as articulações.</p>
+          </li>
+
+          <li class="beneficio-card">
+            <svg class="beneficio-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/>
+            </svg>
+            <h3>Menos estresse, sono melhor</h3>
+            <p>A rotina de treino reduz o estresse e melhora a qualidade do sono.</p>
+          </li>
+
+          <li class="beneficio-card">
+            <svg class="beneficio-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M12 20s-7-4.35-7-9.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 7 3.5C19 15.65 12 20 12 20Z"/>
+              <path d="M5.5 12.5h4l1.5-3 2 5 1.5-2h4"/>
+            </svg>
+            <h3>Peso e pressão sob controle</h3>
+            <p>Ajuda no controle do peso, da pressão arterial e da saúde geral.</p>
           </li>
         </ul>
+      </div>
+    </section>
 
-        <div class="tab-content" id="conteudo-abas-musculacao">
-          <div class="tab-pane fade show active" id="painel-sobre" role="tabpanel" aria-labelledby="aba-sobre" tabindex="0">
-            <article>
-              <h2>Como funcionam os treinos</h2>
-              <p>
-                Cada aluno recebe uma ficha de treino própria, revisada a cada ciclo de oito semanas. Os exercícios
-                combinam força, resistência e mobilidade, sempre respeitando o ritmo de cada pessoa.
-              </p>
+    <section id="pre-avaliacao" aria-labelledby="titulo-pre-avaliacao">
+      <div class="container">
+        <h2 id="titulo-pre-avaliacao">Pré-avaliação com profissional</h2>
+        <p>
+          Antes de iniciar a musculação, todo aluno passa por uma pré-avaliação com um profissional de educação
+          física. O objetivo é conhecer o histórico de saúde, a rotina e os objetivos de cada aluno para definir
+          o treino mais adequado ao seu caso.
+        </p>
 
-              <figure>
-                <img src="img/musc.jpg" alt="Aluno treinando musculação com halteres na sala de pesos" width="1080" height="1080" loading="lazy" class="img-fluid">
-                <figcaption>Sala de musculação com equipamentos para treino de força.</figcaption>
-              </figure>
+        <figure class="foto-conteudo">
+          <img src="img/preav.jpg" alt="Profissional de educação física anotando a avaliação de uma aluna na academia" width="800" height="600" loading="lazy" class="img-padrao">
+          <figcaption>Pré-avaliação feita por profissional de educação física.</figcaption>
+        </figure>
 
-              <h3>Benefícios</h3>
-              <ul>
-                <li>Aumento da força e da massa muscular.</li>
-                <li>Melhora da postura e da saúde das articulações.</li>
-                <li>Redução do estresse e melhora do sono.</li>
-                <li>Auxílio no controle do peso e da pressão arterial.</li>
-              </ul>
+        <h3>Etapas da pré-avaliação</h3>
+        <ol class="stepper-preavaliacao" role="list">
+          <li class="etapa">
+            <h4>Entrevista inicial</h4>
+            <p>Conversa sobre histórico de saúde, rotina e objetivos.</p>
+          </li>
+          <li class="etapa">
+            <h4>Avaliação física</h4>
+            <p>Medição de peso, altura e composição corporal.</p>
+          </li>
+          <li class="etapa">
+            <h4>Mobilidade</h4>
+            <p>Testes simples de mobilidade e resistência.</p>
+          </li>
+          <li class="etapa">
+            <h4>Treino e ficha</h4>
+            <p>Definição do treino e montagem da ficha personalizada.</p>
+          </li>
+        </ol>
 
-              <h3>Para quem é indicada</h3>
-              <p>
-                A modalidade atende iniciantes, alunos em retorno após lesão e praticantes avançados. Não é necessário
-                ter experiência prévia: o primeiro mês é dedicado à adaptação e à técnica correta dos movimentos.
-              </p>
-            </article>
-          </div>
-
-          <div class="tab-pane fade" id="painel-pre-avaliacao" role="tabpanel" aria-labelledby="aba-pre-avaliacao" tabindex="0">
-            <article>
-              <h2>Pré-avaliação com profissional</h2>
-              <p>
-                Antes de iniciar a musculação, todo aluno passa por uma pré-avaliação com um profissional de educação
-                física. O objetivo é conhecer o histórico de saúde e separar os tipos de aluno, definindo o treino mais
-                adequado para cada caso.
-              </p>
-
-              <figure>
-                <img src="img/preav.jpg" alt="Profissional avaliando um aluno antes do início do treino" width="540" height="360" loading="lazy" class="img-fluid">
-                <figcaption>Pré-avaliação feita por profissional de educação física.</figcaption>
-              </figure>
-
-              <h3>Etapas da pré-avaliação</h3>
-              <ol>
-                <li>Entrevista sobre histórico de saúde e objetivos.</li>
-                <li>Medição de peso, altura e composição corporal.</li>
-                <li>Testes simples de mobilidade e resistência.</li>
-                <li>Definição do tipo de aluno e montagem da ficha de treino.</li>
-              </ol>
-
-              <h3>Tipos de aluno</h3>
-              <dl>
-                <dt>Iniciante</dt>
-                <dd>Nunca treinou ou está retornando após um longo período parado.</dd>
-                <dt>Intermediário</dt>
-                <dd>Já treina com regularidade e domina a técnica dos exercícios básicos.</dd>
-                <dt>Avançado</dt>
-                <dd>Treina há mais de um ano e busca objetivos específicos de desempenho.</dd>
-              </dl>
-
-              <p><a class="btn btn-principal" href="cadastro.html">Agendar minha pré-avaliação</a></p>
-            </article>
-          </div>
-        </div>
+        <p class="mt-4"><a class="btn btn-principal" href="cadastro.html">Agendar minha pré-avaliação</a></p>
       </div>
     </section>
   </main>

@@ -5,14 +5,20 @@ O site é 100% front-end (HTML5, CSS3, JavaScript e Bootstrap), sem back-end e s
 
 ## Modalidades
 
-- Musculação (com aba de pré-avaliação com profissional)
+- Musculação (com seção de pré-avaliação em etapas)
 - Luta — Taekwondo
 - Dança — Fit Dance
 
 ## Funcionalidades em JavaScript
 
 - Validação completa do formulário de cadastro, com mensagens de erro ao lado de cada campo.
-- Resumo dos dados preenchidos exibido em um `<dialog>` ao enviar um formulário válido.
+- Mostrar/ocultar senha (com `aria-label` e suporte a teclado) e confirmação de senha.
+- Atividades por checkboxes (ao menos uma obrigatória), planos com preços e total calculado em
+  tempo real conforme o plano e a quantidade de atividades.
+- Nível de experiência em cinco opções acessíveis (radios estilizados) e peso restrito a números.
+- Resumo dos dados preenchidos exibido em um `<dialog>` ao enviar um formulário válido, sem senha.
+- Home com planos gerados a partir do mesmo objeto `PLANOS` do cadastro. O botão de cada plano
+  abre `cadastro.html?plano=...` e pré-seleciona o plano escolhido.
 - Grade de horários montada via `fetch` a partir de `dados/tabela.json`, com agrupamento por
   horário, cores por modalidade e mensagem de erro caso o JSON não possa ser carregado.
 - Se o AJAX for bloqueado (por exemplo, abrindo o site por `file://`), a grade usa uma cópia
@@ -22,12 +28,12 @@ O site é 100% front-end (HTML5, CSS3, JavaScript e Bootstrap), sem back-end e s
 
 ```
 projeto_desenvolvimento_web/
-├── index.html          Home: hero, cards das modalidades, áudio e chamada para cadastro
-├── musculacao.html     Descrição e abas "Sobre" e "Pré-avaliação com profissional"
+├── index.html          Home: hero, modalidades, planos, benefícios e CT com áudio
+├── musculacao.html     Descrição, índice, benefícios e stepper de pré-avaliação
 ├── luta.html           Descrição, benefícios, níveis/faixas e imagens
 ├── danca.html          Descrição, benefícios e imagens
 ├── horarios.html       Grade de aulas semanal (tabela preenchida via AJAX)
-├── cadastro.html       Formulário geral de cadastro (12 campos — meta G4)
+├── cadastro.html       Formulário geral de cadastro (meta G4)
 ├── css/
 │   ├── bootstrap.min.css   Bootstrap 5.3.3 (local, sem CDN)
 │   └── styles.css          CSS próprio (meta L3)
