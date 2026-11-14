@@ -135,7 +135,7 @@ header nav a:hover {
 }
 
 .cabecalho-modalidade {
-    padding: 0;
+    padding: clamp(1.5rem, 3vw, 2.5rem) 0 0;
     color: inherit;
     background: transparent;
 }
