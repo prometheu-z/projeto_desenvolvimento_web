@@ -87,6 +87,10 @@ main > section > .container > :last-child {
     margin-bottom: 0;
 }
 
+.secao-bem-estar {
+    padding-top: clamp(3rem, 6vw, 4rem);
+}
+
 .navbar {
     background-color: var(--cor-superficie);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
@@ -722,6 +726,17 @@ figure .img-padrao {
     border: 1px solid var(--cor-borda);
     border-radius: 12px;
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
+
+.audio-card .audio-card-titulo {
+    margin: 0 0 0.35rem;
+    font-size: 1.1rem;
+    color: var(--cor-primaria);
+}
+
+.audio-card .audio-card-texto {
+    margin-bottom: 0.75rem;
+    color: var(--cor-texto-sec);
 }
 
 .audio-card audio {
