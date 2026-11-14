@@ -273,17 +273,20 @@ function renderizarPlanosHome() {
         preco.append(valor, periodo);
         card.appendChild(preco);
 
+        const detalhes = document.createElement('div');
+        detalhes.className = 'plano-home-detalhes';
+
         const porAtividade = document.createElement('p');
         porAtividade.className = 'plano-home-por';
         porAtividade.textContent = 'por atividade';
-        card.appendChild(porAtividade);
+        detalhes.appendChild(porAtividade);
 
         const total = document.createElement('p');
         total.className = 'plano-home-total';
         total.textContent = plano.meses === 1
             ? 'Cobrança mensal por atividade.'
             : `Total de ${formatarMoeda(plano.precoPorAtividade * plano.meses)} por atividade no período de ${plano.meses} meses.`;
-        card.appendChild(total);
+        detalhes.appendChild(total);
 
         const desconto = Math.round((1 - plano.precoPorAtividade / precoBase) * 100);
 
@@ -291,8 +294,10 @@ function renderizarPlanosHome() {
             const economia = document.createElement('p');
             economia.className = 'plano-home-economia';
             economia.textContent = `${desconto}% de desconto em relação ao mensal`;
-            card.appendChild(economia);
+            detalhes.appendChild(economia);
         }
+
+        card.appendChild(detalhes);
 
         const link = document.createElement('a');
         link.className = plano.destaque ? 'btn btn-principal' : 'btn btn-plano';
