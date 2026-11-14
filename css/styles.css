@@ -253,17 +253,6 @@ section h2::after {
     border-radius: 2px;
 }
 
-/* Letra capitular discreta no primeiro parágrafo de cada página */
-main > section:first-of-type > .container > p:first-of-type::first-letter {
-    font-size: 1.6em;
-    font-weight: 700;
-    color: var(--cor-secundaria);
-}
-
-main > section.hero:first-of-type > .container > p.lead:first-of-type::first-letter {
-    color: var(--cor-destaque-clara);
-}
-
 .btn {
     font-size: 1.0625rem;
 }
