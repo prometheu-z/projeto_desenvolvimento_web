@@ -30,6 +30,29 @@ const PLANOS = {
     }
 };
 
+const NIVEIS_EXPERIENCIA = {
+    1: {
+        titulo: 'Nível 1 · Nenhuma experiência',
+        descricao: 'Nunca pratiquei ou estou começando agora.'
+    },
+    2: {
+        titulo: 'Nível 2 · Pouca experiência',
+        descricao: 'Já pratiquei por pouco tempo ou de forma irregular.'
+    },
+    3: {
+        titulo: 'Nível 3 · Experiência intermediária',
+        descricao: 'Pratico com alguma regularidade.'
+    },
+    4: {
+        titulo: 'Nível 4 · Boa experiência',
+        descricao: 'Pratico regularmente há bastante tempo.'
+    },
+    5: {
+        titulo: 'Nível 5 · Muita experiência',
+        descricao: 'Pratico com frequência e domino a técnica.'
+    }
+};
+
 const ATIVIDADES_PERMITIDAS = ['musculacao', 'taekwondo', 'fit-dance'];
 
 const DIAS_COLUNAS = {
@@ -82,6 +105,7 @@ function aoCarregar() {
         preencherPrecosDosPlanos();
         aplicarPlanoDaUrl();
         atualizarTotalPlano();
+        atualizarNivelExperiencia();
     }
 
     renderizarPlanosHome();
@@ -107,8 +131,43 @@ function aoEditarCampo(evento) {
             atualizarTotalPlano();
         }
 
+        if (campo.name === 'experiencia') {
+            atualizarNivelExperiencia();
+        }
+
         limparEstadoCampo(campo);
     }
+}
+
+function atualizarNivelExperiencia() {
+    const descricao = document.getElementById('experiencia-descricao');
+
+    if (!descricao) {
+        return;
+    }
+
+    const selecionado = document.querySelector('input[name="experiencia"]:checked');
+    const nivel = selecionado ? NIVEIS_EXPERIENCIA[selecionado.value] : null;
+
+    descricao.textContent = '';
+    descricao.classList.remove('experiencia-descricao--mudou');
+
+    if (!nivel) {
+        descricao.textContent = 'Escolha um nível de 1 a 5.';
+        return;
+    }
+
+    const titulo = document.createElement('strong');
+    titulo.className = 'experiencia-descricao-titulo';
+    titulo.textContent = `${nivel.titulo}.`;
+
+    const texto = document.createElement('span');
+    texto.className = 'experiencia-descricao-texto';
+    texto.textContent = ` ${nivel.descricao}`;
+
+    descricao.append(titulo, texto);
+    void descricao.offsetWidth;
+    descricao.classList.add('experiencia-descricao--mudou');
 }
 
 /* ------------------------- Visualizar senha ------------------------- */
@@ -762,6 +821,7 @@ function coletarDados(formulario) {
     const valor = (nome) => formulario.elements.namedItem(nome).value;
     const plano = formulario.querySelector('input[name="plano"]:checked');
     const experiencia = formulario.querySelector('input[name="experiencia"]:checked');
+    const nivelExperiencia = experiencia ? NIVEIS_EXPERIENCIA[experiencia.value] : null;
     const atividades = Array.from(
         formulario.querySelectorAll('input[name="atividade"]:checked'),
         (campo) => (campo.labels && campo.labels.length ? campo.labels[0].textContent.trim() : campo.value)
@@ -779,7 +839,7 @@ function coletarDados(formulario) {
         'Plano': rotuloPlano,
         'Período do plano': calculoTotal ? rotuloPeriodoPlano(calculoTotal.plano) : '—',
         'Total do plano': calculoTotal ? formatarMoeda(calculoTotal.total) : '—',
-        'Nível de experiência': experiencia ? `${experiencia.value} de 5` : '',
+        'Nível de experiência': nivelExperiencia ? nivelExperiencia.titulo : '',
         'Peso': peso ? formatarPeso(peso) : 'Não informado',
         'Observações': valor('observacoes').trim() || 'Nenhuma',
         'Termos de uso': 'Aceitos'

@@ -202,7 +202,7 @@
             <legend>Perfil e observações</legend>
 
             <div class="row">
-              <fieldset class="col-md-6 mb-3">
+              <fieldset class="col-md-6 mb-3 experiencia-campo" aria-describedby="experiencia-descricao">
                 <legend class="form-label fs-6">Nível de experiência</legend>
                 <div class="experiencia-opcoes">
                   <div class="experiencia-opcao">
@@ -226,7 +226,9 @@
                     <label class="experiencia-bolinha" for="experiencia-5">5</label>
                   </div>
                 </div>
-                <p class="form-text">1 = nenhuma experiência; 5 = muita experiência.</p>
+                <p class="form-text experiencia-descricao" id="experiencia-descricao" aria-live="polite">
+                  Escolha um nível de 1 a 5.
+                </p>
               </fieldset>
 
               <div class="col-md-6 mb-3">
