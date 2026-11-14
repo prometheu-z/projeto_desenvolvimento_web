@@ -667,32 +667,49 @@ figure .img-padrao {
     color: #B9C8D6;
 }
 
+/* Bloco do áudio: centralizado e com largura confortável para leitura e uso */
 .ct-audio {
-    margin-top: 2rem;
+    max-width: 40rem;
+    margin: 2rem auto 0;
     padding-top: 1.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.ct-audio h3 {
+.audio-card {
+    padding: 1.5rem;
+    text-align: center;
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: 12px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
+
+.audio-card h3 {
     font-size: 1.35rem;
+    color: var(--cor-primaria);
 }
 
-.ct-audio p {
-    color: #D3DEE9;
+.audio-card p {
+    margin-bottom: 0;
+    color: var(--cor-texto-sec);
 }
 
-.ct-audio figure {
-    margin: 0.75rem 0 0;
+.audio-card figure {
+    margin: 0.9rem 0 0;
 }
 
-.ct-audio figcaption {
+.audio-card figcaption {
+    margin-top: 0.6rem;
     font-size: 0.9rem;
-    color: #B9C8D6;
+    color: var(--cor-texto-sec);
 }
 
-.ct-audio audio {
+.audio-card audio {
+    display: block;
     width: 100%;
     max-width: 32rem;
+    min-height: 3.25rem;
+    margin-inline: auto;
 }
 
 /* Encosta o rodapé no bloco escuro do CT */
