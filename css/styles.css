@@ -45,8 +45,12 @@
 html {
     font-size: 112.5%;
     scroll-behavior: smooth;
-    /* Compensa o cabeçalho fixo ao navegar por âncoras */
-    scroll-padding-top: 7rem;
+}
+
+/* Compensa o cabeçalho fixo ao navegar por âncoras */
+section[id],
+[id].ancora {
+    scroll-margin-top: 6rem;
 }
 
 body {
@@ -73,6 +77,24 @@ footer a:focus-visible {
 
 main > section {
     padding: 3.5rem 0;
+}
+
+/*
+ * Nas páginas de modalidade, o padding de cada seção somava dois espaços
+ * grandes entre os blocos. O padding superior das seções seguintes é zerado
+ * e o último elemento de cada seção perde a margem, mantendo cerca de 2,5rem
+ * de respiro entre um bloco e o próximo.
+ */
+.pagina-modalidade > section {
+    padding: 2.5rem 0;
+}
+
+.pagina-modalidade > section + section {
+    padding-top: 0;
+}
+
+.pagina-modalidade > section > .container > :last-child {
+    margin-bottom: 0;
 }
 
 .navbar {
@@ -326,10 +348,9 @@ blockquote::before {
     border-radius: 8px;
 }
 
-/* Variante para ilustrações que não podem ser recortadas (mantém a proporção da caixa) */
-.img-padrao--conter {
-    object-fit: contain;
-    background-color: var(--cor-superficie);
+/* Centraliza o recorte em fotos de pessoas ou objetos no meio do quadro */
+.img-padrao--centro {
+    object-position: center;
 }
 
 /* Variante para fotos verticais em que o topo (rostos) deve ser preservado */
@@ -348,19 +369,27 @@ figure .img-padrao {
     margin-bottom: 0.25rem;
 }
 
-/* Benefícios em cards (ícone + título + descrição curta) */
+/*
+ * Benefícios em cards (ícone + título + descrição curta).
+ * Flexbox com justify-content: center mantém as linhas incompletas
+ * centralizadas, sem o "buraco" que o grid deixava à direita.
+ */
 .beneficios-grid {
-    list-style: none;
-    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1.5rem;
     margin: 1.5rem 0 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(13.5rem, 1fr));
-    gap: 1.25rem;
+    padding: 0;
+    list-style: none;
 }
 
 .beneficio-card {
-    height: 100%;
-    padding: 1.35rem;
+    flex: 0 1 calc((100% - 3rem) / 3);
+    max-width: calc((100% - 3rem) / 3);
+    min-width: 0;
+    padding: 1.85rem 1.6rem;
     background-color: var(--cor-superficie);
     border: 1px solid var(--cor-borda);
     border-top: 4px solid var(--cor-secundaria);
@@ -385,11 +414,6 @@ figure .img-padrao {
     margin-bottom: 0;
     font-size: 0.9375rem;
     color: var(--cor-texto-sec);
-}
-
-/* Na home, os benefícios ficam em 3 colunas no desktop */
-.beneficios-grid.beneficios-grid--home {
-    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
 }
 
 /* Stepper da pré-avaliação de musculação (HTML + CSS) */
@@ -480,6 +504,15 @@ figure .img-padrao {
     border: 1px solid var(--cor-borda);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(31, 41, 55, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+/* Qualquer plano ganha destaque temporário ao passar o mouse ou receber foco */
+.plano-home:hover,
+.plano-home:focus-within {
+    transform: translateY(-4px);
+    border-color: var(--cor-primaria);
+    box-shadow: 0 16px 32px rgba(8, 31, 49, 0.22);
 }
 
 .plano-home--destaque {
@@ -617,8 +650,11 @@ figure .img-padrao {
 
 .ct-imagem {
     display: block;
-    width: 100%;
+    width: auto;
+    max-width: 100%;
     height: auto;
+    margin-left: auto;
+    margin-right: auto;
     aspect-ratio: 4 / 3;
     object-fit: cover;
     border-radius: 12px;
@@ -907,7 +943,7 @@ form textarea:focus {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    gap: 0.1rem 1rem;
+    gap: 0.35rem 0.9rem;
     margin-top: 1rem;
     padding: 1rem 1.25rem;
     background-color: #EFFAF5;
@@ -927,6 +963,20 @@ form textarea:focus {
     font-weight: 800;
     line-height: 1.2;
     color: var(--cor-secundaria-escura);
+}
+
+/* Chip do período fica ao lado do valor total */
+.total-plano-periodo {
+    margin: 0;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--cor-secundaria-escura);
+    background-color: #D9F2E6;
+    border: 1px solid #A7DCC2;
+    border-radius: 999px;
+    white-space: nowrap;
 }
 
 .total-plano-detalhe {
@@ -1093,6 +1143,12 @@ footer address a:hover {
         min-height: 0;
     }
 
+    /* No tablet, os benefícios ficam em duas colunas por linha */
+    .beneficio-card {
+        flex-basis: calc((100% - 1.5rem) / 2);
+        max-width: calc((100% - 1.5rem) / 2);
+    }
+
     .stepper-preavaliacao {
         grid-template-columns: 1fr;
         gap: 1.75rem;
@@ -1131,6 +1187,13 @@ footer address a:hover {
 
     .plano-home--destaque .plano-home-valor {
         font-size: 2.5rem;
+    }
+
+    /* No mobile, cada benefício ocupa a linha inteira */
+    .beneficio-card {
+        flex-basis: 100%;
+        max-width: 100%;
+        padding: 1.5rem 1.35rem;
     }
 
     .ct-imagem {
@@ -1201,11 +1264,14 @@ footer address a:hover {
 
     .nav-link,
     .btn-principal,
-    .card-modalidade {
+    .card-modalidade,
+    .plano-home {
         transition: none;
     }
 
-    .card-modalidade:hover {
+    .card-modalidade:hover,
+    .plano-home:hover,
+    .plano-home:focus-within {
         transform: none;
     }
 }
