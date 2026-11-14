@@ -139,6 +139,18 @@ function formatarMoeda(valor) {
     return Number(valor).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
+function rotuloPeriodoPlano(plano) {
+    if (plano.meses === 1) {
+        return '1 mês';
+    }
+
+    if (plano.meses === 12) {
+        return '12 meses · valor anual';
+    }
+
+    return `${plano.meses} meses`;
+}
+
 function preencherPrecosDosPlanos() {
     Object.entries(PLANOS).forEach(([chave, plano]) => {
         const preco = document.querySelector(`[data-preco-plano="${chave}"]`);
@@ -271,6 +283,7 @@ function atualizarTotalPlano() {
     const formulario = document.getElementById('form-cadastro');
     const valor = document.getElementById('total-plano');
     const detalhe = document.getElementById('total-plano-detalhe');
+    const periodo = document.getElementById('total-plano-periodo');
 
     if (!formulario || !valor || !detalhe) {
         return;
@@ -283,6 +296,11 @@ function atualizarTotalPlano() {
         const atividades = obterAtividadesSelecionadas(formulario);
 
         valor.textContent = formatarMoeda(0);
+
+        if (periodo) {
+            periodo.hidden = true;
+            periodo.textContent = '';
+        }
 
         if (planoSelecionado && atividades.length === 0) {
             detalhe.textContent = 'Agora selecione pelo menos uma atividade.';
@@ -297,11 +315,15 @@ function atualizarTotalPlano() {
 
     const { plano, quantidadeAtividades, total } = calculo;
     const rotuloAtividades = quantidadeAtividades === 1 ? 'atividade' : 'atividades';
-    const rotuloMeses = plano.meses === 1 ? 'mês' : 'meses';
-    const mensal = plano.precoPorAtividade * quantidadeAtividades;
 
     valor.textContent = formatarMoeda(total);
-    detalhe.textContent = `${quantidadeAtividades} ${rotuloAtividades} · ${formatarMoeda(mensal)}/mês · ${plano.meses} ${rotuloMeses}`;
+
+    if (periodo) {
+        periodo.hidden = false;
+        periodo.textContent = rotuloPeriodoPlano(plano);
+    }
+
+    detalhe.textContent = `${quantidadeAtividades} ${rotuloAtividades} × ${formatarMoeda(plano.precoPorAtividade)}/mês`;
 }
 
 /* ------------------------- Campo de peso ------------------------- */
@@ -755,6 +777,7 @@ function coletarDados(formulario) {
         'Data de nascimento': formatarData(valor('nascimento')),
         'Atividades': atividades.join(', '),
         'Plano': rotuloPlano,
+        'Período do plano': calculoTotal ? rotuloPeriodoPlano(calculoTotal.plano) : '—',
         'Total do plano': calculoTotal ? formatarMoeda(calculoTotal.total) : '—',
         'Nível de experiência': experiencia ? `${experiencia.value} de 5` : '',
         'Peso': peso ? formatarPeso(peso) : 'Não informado',
