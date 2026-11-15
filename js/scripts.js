@@ -919,7 +919,7 @@ function exibirResumo(dados) {
 
     const fechar = document.createElement('button');
     fechar.type = 'button';
-    fechar.className = 'btn btn-principal';
+    fechar.className = 'btn btn-principal resumo-fechar';
     fechar.textContent = 'Fechar';
     fechar.addEventListener('click', () => dialogo.close());
 

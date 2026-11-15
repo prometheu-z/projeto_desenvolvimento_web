@@ -83,8 +83,12 @@ main > section + section {
     padding-top: 0;
 }
 
-main > section > .container > :last-child {
+main > section > .container > :last-child:not(dialog) {
     margin-bottom: 0;
+}
+
+html:has(dialog:modal) {
+    scrollbar-gutter: stable both-edges;
 }
 
 .secao-bem-estar {
@@ -1175,13 +1179,27 @@ figure figcaption {
 }
 
 dialog {
+    margin: auto;
     border: none;
     border-radius: 8px;
     padding: 1.5rem;
     width: calc(100% - 2rem);
     max-width: 520px;
+    max-height: calc(100dvh - 2rem);
+    overflow-y: auto;
+    scrollbar-gutter: stable both-edges;
     color: var(--cor-texto);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+#dialogo-resumo h2 {
+    text-align: center;
+}
+
+.resumo-fechar {
+    display: block;
+    min-width: 8rem;
+    margin: 0 auto;
 }
 
 dialog::backdrop {
