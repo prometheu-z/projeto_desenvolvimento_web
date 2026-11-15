@@ -4,12 +4,25 @@
 **Autores:** Gabriel e Lucas E.  
 **Grupo:** Gabriel, Lucas E., Vitor, Dennis e Ewerton  
 **Disciplina:** SPODWE1 – BSI/IFSP  
-**Status:** Em andamento (v2, domínio definido)  
-**Atualizado em:** 17/10/2026
+**Status:** Concluído e entregue em `main`  
+**Atualizado em:** 15/11/2026
 
 ## **1\. Resumo**
 
-O grupo vai construir o site de uma **academia com foco em bem-estar** (domínio sorteado: Aulas de Bem-Estar), com três modalidades: **Musculação**, **Luta** (Taekwondo) e **Dança** (Fit Dance). O site é 100% front-end (HTML5, CSS3, JavaScript e Bootstrap), sem back-end nem banco de dados. O trabalho tem duas fases: **Entrega Intermediária (20/10/2026)** e **Entrega Final (16/11/2026)**, com apresentação em 17/11/2026 às 7:55. Este RFC também serve de especificação para agentes de IA que forem programar ou revisar o código (seção 5).
+O grupo construiu o site de uma **academia com foco em bem-estar** (domínio sorteado: Aulas de Bem-Estar), com três modalidades: **Musculação**, **Luta** (Taekwondo) e **Dança** (Fit Dance). O site é 100% front-end (HTML5, CSS3, JavaScript e Bootstrap), sem back-end nem banco de dados. O projeto foi desenvolvido em duas fases principais — **Entrega Intermediária (20/10/2026)** e **Entrega Final (16/11/2026)** — e passou por refinamentos finais de UX, layout responsivo e acessibilidade antes da apresentação em 17/11/2026 às 7:55. Este RFC também serve de especificação para agentes de IA que forem programar ou revisar o código (seção 5).
+
+### **Atualização de implementação (novembro/2026)**
+
+Durante a etapa de refinamento do produto, o projeto recebeu ajustes focados em consistência visual, acessibilidade e responsividade, sem quebrar as regras do projeto e sem mexer em arquivos de imagem ou mídia fora do escopo.
+
+* **Home e ritmo vertical:** ajuste global do espaçamento entre seções para evitar vãos exagerados e manter um padrão consistente em todas as páginas.
+* **Áudio da home:** o card manteve apenas o `<audio controls>` com `aria-label`, com a legenda e textos visíveis removidos para preservar a aparência limpa e o foco no player.
+* **Modalidades:** o cabeçalho de página foi reestruturado em bloco leve com título, texto de abertura e índice em abas, mantendo os links no formato `arquivo.html#id` e o acesso ao conteúdo em cada seção.
+* **Infográfico de luta:** a imagem “Níveis e faixas” foi ajustada para `object-fit: contain`, com dimensões reais nos atributos HTML e sem corte de conteúdo importante.
+* **Planos da home:** os três cards passaram a ter mesma largura e altura, com destaque do plano principal em cor sólida, selo no topo e hover sutil sem alterar o tamanho em repouso.
+* **Cadastro:** o diálogo de resumo foi centralizado corretamente, com botão “Fechar” alinhado e rolagem interna em telas menores.
+
+Esses ajustes foram validados em larguras críticas e em telas baixas, respeitando a paleta do projeto, o uso local de Bootstrap e a ausência de CDN/inline CSS ou JS.
 
 ## **2\. Decisões já tomadas pelo grupo**
 
@@ -349,16 +362,16 @@ Sugestão, a confirmar com eles: **Vitor** entrega a parte dele do documento e a
 
 ## **8\. Checklist final de requisitos do enunciado**
 
-* ☐ Sem back-end e sem banco de dados  
-* ☐ Documento PDF (5 a 10 páginas) com Concepção, Arquitetura da Informação e Identidade Visual  
-* ☐ Apenas HTML, CSS e JavaScript  
-* ☐ Bootstrap como único framework (de estilização)  
-* ☐ Tags semânticas do HTML5, sem div indiscriminado  
-* ☐ 1 áudio ou vídeo e 5+ imagens  
-* ☐ Formulário com 8+ tipos de componente, validado em JS, com exibição dos dados em diálogo  
-* ☐ Tabela estática (intermediária) e depois via AJAX com tabela.json (final)  
-* ☐ 15+ regras CSS próprias (2 compostos, 2 pseudoclasses, 2 pseudoelementos) em styles.css  
-* ☐ Funções JS em scripts.js  
-* ☐ Layout fluido e responsivo  
-* ☐ Zips nomeados corretamente e enviados pelo Moodle4
+* ✅ Sem back-end e sem banco de dados  
+* ✅ Documento PDF (5 a 10 páginas) com Concepção, Arquitetura da Informação e Identidade Visual  
+* ✅ Apenas HTML, CSS e JavaScript  
+* ✅ Bootstrap como único framework (de estilização)  
+* ✅ Tags semânticas do HTML5, sem div indiscriminado  
+* ✅ 1 áudio ou vídeo e 5+ imagens  
+* ✅ Formulário com 8+ tipos de componente, validado em JS, com exibição dos dados em diálogo  
+* ✅ Tabela estática (intermediária) e depois via AJAX com tabela.json (final)  
+* ✅ 15+ regras CSS próprias (2 compostos, 2 pseudoclasses, 2 pseudoelementos) em styles.css  
+* ✅ Funções JS em scripts.js  
+* ✅ Layout fluido e responsivo  
+* ✅ Zips nomeados corretamente e enviados pelo Moodle4
 
