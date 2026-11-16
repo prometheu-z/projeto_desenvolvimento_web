@@ -532,7 +532,7 @@ function aplicarMascaraTelefone(campo) {
     }
 }
 
-/* ----------------------------- Validações ----------------------------- */
+/* ---------------------- REQ. 7: Validações do formulário ---------------------- */
 
 function validarNome(valor) {
     const nome = valor.trim();
@@ -736,8 +736,9 @@ function validarTermos(marcado) {
     return { valido: true, mensagem: '' };
 }
 
-/* --------------------------- Formulário --------------------------- */
+/* -------------------- REQ. 7: Envio e validação do formulário -------------------- */
 
+/* Valida os campos, mostra erros e só abre o resumo quando todos são válidos. */
 function validarFormulario(evento) {
     evento.preventDefault();
 
@@ -936,6 +937,7 @@ function configurarDialogo() {
     });
 }
 
+/* REQ. 7: monta e abre o diálogo com os dados do formulário. */
 function exibirResumo(dados) {
     const dialogo = document.getElementById('dialogo-resumo');
 
@@ -979,7 +981,7 @@ function exibirResumo(dados) {
     dialogo.scrollTop = 0;
 }
 
-/* --------------------- Grade de horários (AJAX) --------------------- */
+/* ---------------------- REQ. 12: Grade de horários via AJAX ---------------------- */
 
 async function carregarTabela() {
     const corpo = document.getElementById('corpo-tabela');

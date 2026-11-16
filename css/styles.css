@@ -4,6 +4,7 @@
  *   azul-marinho #081F31 e verde-esmeralda #0A7551.
  * O laranja foi removido de toda a interface.
  */
+/* REQ. 9: regras próprias e exemplos de seletores usados na apresentação. */
 :root {
     /* Paleta própria */
     --cor-primaria: #081F31;
@@ -104,6 +105,7 @@ body {
     color: var(--cor-texto);
 }
 
+/* REQ. 9 — EXEMPLO DE PSEUDOCLASSE: :focus-visible (foco visível por teclado). */
 a:focus-visible,
 .btn:focus-visible,
 .form-check-input:focus-visible,
@@ -123,6 +125,7 @@ main > section {
     padding: clamp(2rem, 4vw, 3rem) 0;
 }
 
+/* REQ. 9: seletor composto com filho e irmão adjacente. */
 main > section + section {
     padding-top: 0;
 }
@@ -169,6 +172,7 @@ html:has(dialog:modal) {
     transition: color 0.2s ease-in-out;
 }
 
+/* REQ. 9: seletor composto descendente com pseudoclasse :hover. */
 header nav a:hover {
     color: var(--cor-secundaria-escura);
 }
@@ -329,6 +333,7 @@ h3 {
     color: #FFFFFF;
 }
 
+/* REQ. 9 — EXEMPLO DE PSEUDOELEMENTO: ::after (linha decorativa após o título). */
 section h2::after {
     content: "";
     display: block;
@@ -373,6 +378,7 @@ blockquote {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
+/* REQ. 9: pseudoelemento ::before. */
 blockquote::before {
     content: "\201C";
     position: absolute;
@@ -896,6 +902,7 @@ figure .img-padrao {
     font-weight: 600;
 }
 
+/* REQ. 9: pseudoclasse estrutural :nth-child(). */
 tbody tr:nth-child(even) td {
     background-color: var(--cor-superficie-alternada);
 }
@@ -1064,6 +1071,7 @@ form textarea:focus {
     border-color: var(--cor-secundaria);
 }
 
+/* REQ. 9: pseudoclasse de estado :checked. */
 .plano-radio:checked + .plano-label {
     border-color: var(--cor-secundaria);
     background-color: var(--cor-superficie-destaque);
