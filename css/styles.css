@@ -16,11 +16,21 @@
     --cor-superficie: #FFFFFF;
     --cor-texto: #1F2937;
     --cor-texto-sec: #4B5563;
+    --cor-titulo: #081F31;
     --cor-borda: #D6DEE6;
     --cor-link: #07543A;
     --cor-erro: #B91C1C;
+    --cor-superficie-suave: #E8EEF4;
+    --cor-superficie-alternada: #F8FAFC;
+    --cor-superficie-destaque: #EFFAF5;
+    --cor-superficie-chip: #D9F2E6;
+    --cor-borda-chip: #A7DCC2;
+    --cor-placeholder: #6B7280;
+    --cor-modalidade-musculacao: #E8EAED;
+    --cor-modalidade-danca: #D3F2E3;
+    --cor-modalidade-taekwondo: #DAE8F5;
 
-    /* Sobrescrita das variáveis do Bootstrap 5.3 (sem editar bootstrap.min.css) */
+    /* Sobrescrita das variáveis do Bootstrap */
     --bs-primary: #081F31;
     --bs-primary-rgb: 8, 31, 49;
     --bs-secondary: #0A7551;
@@ -39,6 +49,39 @@
     --fonte-titulo: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     --fonte-texto: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     --altura-logo: 84px;
+}
+
+:root[data-tema="escuro"] {
+    color-scheme: dark;
+    --cor-fundo: #111A23;
+    --cor-superficie: #1D2935;
+    --cor-texto: #E6EDF3;
+    --cor-texto-sec: #B5C0CB;
+    --cor-titulo: #EAF1F6;
+    --cor-borda: #3D4B58;
+    --cor-link: #75D9A9;
+    --cor-secundaria-escura: #75D9A9;
+    --cor-erro: #FF8D8D;
+    --cor-superficie-suave: #293744;
+    --cor-superficie-alternada: #202D39;
+    --cor-superficie-destaque: #1D3A30;
+    --cor-superficie-chip: #294A3B;
+    --cor-borda-chip: #47745D;
+    --cor-placeholder: #A7B2BD;
+    --cor-modalidade-musculacao: #2A343E;
+    --cor-modalidade-danca: #214334;
+    --cor-modalidade-taekwondo: #253A4E;
+
+    --bs-link-color: #75D9A9;
+    --bs-link-color-rgb: 117, 217, 169;
+    --bs-link-hover-color: #A5EAC8;
+    --bs-link-hover-color-rgb: 165, 234, 200;
+    --bs-body-color: #E6EDF3;
+    --bs-body-bg: #111A23;
+    --bs-border-color: #3D4B58;
+    --bs-emphasis-color: #EAF1F6;
+    --bs-focus-ring-color: rgba(117, 217, 169, 0.35);
+    --bs-focus-ring-rgb: 117, 217, 169;
 }
 
 /* Base tipográfica maior: 18px em vez dos 16px padrão */
@@ -64,6 +107,7 @@ body {
 a:focus-visible,
 .btn:focus-visible,
 .form-check-input:focus-visible,
+.tema-toggle:focus-visible,
 .navbar-toggler:focus-visible {
     outline: 3px solid var(--cor-secundaria);
     outline-offset: 2px;
@@ -134,6 +178,34 @@ header nav a:hover {
     font-weight: 700;
 }
 
+.tema-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0.25rem;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+}
+
+.tema-icone::before {
+    content: "\263E";
+    font-size: 1.75rem;
+    line-height: 1;
+}
+
+:root[data-tema="escuro"] .tema-icone::before {
+    content: "\2600";
+}
+
+.tema-toggle:hover,
+.tema-toggle:focus-visible {
+    color: var(--cor-secundaria-escura);
+}
+
 .navbar-toggler:focus {
     box-shadow: 0 0 0 0.25rem rgba(10, 117, 81, 0.25);
 }
@@ -145,7 +217,7 @@ header nav a:hover {
 }
 
 .cabecalho-modalidade h1 {
-    color: var(--cor-primaria);
+    color: var(--cor-titulo);
 }
 
 .cabecalho-modalidade-texto {
@@ -160,7 +232,7 @@ header nav a:hover {
 
 .indice-pagina {
     margin-top: 1.25rem;
-    border-bottom: 1px solid #D9DEE3;
+    border-bottom: 1px solid var(--cor-borda);
 }
 
 .indice-lista {
@@ -176,7 +248,7 @@ header nav a:hover {
     display: inline-block;
     padding: 0.75rem 0;
     font-weight: 600;
-    color: var(--cor-primaria);
+    color: var(--cor-titulo);
     text-decoration: none;
     border-bottom: 3px solid transparent;
     margin-bottom: -1px;
@@ -234,7 +306,7 @@ header nav a:hover {
 
 h1, h2, h3 {
     font-family: var(--fonte-titulo);
-    color: var(--cor-primaria);
+    color: var(--cor-titulo);
     line-height: 1.25;
     margin-bottom: 1rem;
     text-wrap: balance;
@@ -493,7 +565,7 @@ figure .img-padrao {
 .stepper-preavaliacao h4 {
     margin: 0 0 0.35rem;
     font-size: 1.15rem;
-    color: var(--cor-primaria);
+    color: var(--cor-titulo);
     transition: color 0.2s ease;
 }
 
@@ -629,7 +701,7 @@ figure .img-padrao {
     font-size: 2.4rem;
     font-weight: 800;
     letter-spacing: -0.02em;
-    color: var(--cor-primaria);
+    color: var(--cor-titulo);
 }
 
 .plano-home-periodo {
@@ -684,9 +756,9 @@ figure .img-padrao {
 
 .plano-home--destaque .btn-principal:hover,
 .plano-home--destaque .btn-principal:focus-visible {
-    color: var(--cor-primaria);
-    background-color: #F4F6F8;
-    border-color: #F4F6F8;
+    color: var(--cor-titulo);
+    background-color: var(--cor-fundo);
+    border-color: var(--cor-fundo);
 }
 
 .btn-plano {
@@ -773,7 +845,7 @@ figure .img-padrao {
 .audio-card .audio-card-titulo {
     margin: 0 0 0.35rem;
     font-size: 1.1rem;
-    color: var(--cor-primaria);
+    color: var(--cor-titulo);
 }
 
 .audio-card .audio-card-texto {
@@ -820,12 +892,12 @@ figure .img-padrao {
 }
 
 .table tbody th {
-    background-color: #E8EEF4;
+    background-color: var(--cor-superficie-suave);
     font-weight: 600;
 }
 
 tbody tr:nth-child(even) td {
-    background-color: #F8FAFC;
+    background-color: var(--cor-superficie-alternada);
 }
 
 table caption {
@@ -837,17 +909,17 @@ table caption {
 
 /* Cores por modalidade na grade de horários (sem laranja) */
 .mod-musculacao {
-    background-color: #E8EAED !important;
+    background-color: var(--cor-modalidade-musculacao) !important;
     border-left: 4px solid var(--cor-primaria);
 }
 
 .mod-danca {
-    background-color: #D3F2E3 !important;
+    background-color: var(--cor-modalidade-danca) !important;
     border-left: 4px solid var(--cor-secundaria);
 }
 
 .mod-taekwondo {
-    background-color: #DAE8F5 !important;
+    background-color: var(--cor-modalidade-taekwondo) !important;
     border-left: 4px solid var(--cor-primaria-clara);
 }
 
@@ -925,11 +997,11 @@ form textarea:focus {
     padding: 0;
     background-color: var(--cor-superficie);
     border: 1px solid var(--cor-borda);
-    color: var(--cor-primaria);
+    color: var(--cor-titulo);
 }
 
 .btn-olho:hover {
-    background-color: #E8EEF4;
+    background-color: var(--cor-superficie-suave);
     color: var(--cor-secundaria-escura);
 }
 
@@ -994,7 +1066,7 @@ form textarea:focus {
 
 .plano-radio:checked + .plano-label {
     border-color: var(--cor-secundaria);
-    background-color: #EFFAF5;
+    background-color: var(--cor-superficie-destaque);
     box-shadow: 0 0 0 3px rgba(10, 117, 81, 0.16);
 }
 
@@ -1010,7 +1082,7 @@ form textarea:focus {
 .plano-nome {
     font-size: 1rem;
     font-weight: 700;
-    color: var(--cor-primaria);
+    color: var(--cor-titulo);
 }
 
 .plano-preco {
@@ -1040,7 +1112,7 @@ form textarea:focus {
     gap: 0.35rem 0.9rem;
     margin-top: 1rem;
     padding: 1rem 1.25rem;
-    background-color: #EFFAF5;
+    background-color: var(--cor-superficie-destaque);
     border: 1px solid var(--cor-secundaria);
     border-radius: 10px;
 }
@@ -1048,7 +1120,7 @@ form textarea:focus {
 .total-plano-rotulo {
     margin: 0;
     font-weight: 700;
-    color: var(--cor-primaria);
+    color: var(--cor-titulo);
 }
 
 .total-plano-valor {
@@ -1067,8 +1139,8 @@ form textarea:focus {
     font-weight: 700;
     line-height: 1.3;
     color: var(--cor-secundaria-escura);
-    background-color: #D9F2E6;
-    border: 1px solid #A7DCC2;
+    background-color: var(--cor-superficie-chip);
+    border: 1px solid var(--cor-borda-chip);
     border-radius: 999px;
     white-space: nowrap;
 }
@@ -1140,7 +1212,7 @@ form textarea:focus {
 }
 
 .experiencia-descricao-titulo {
-    color: var(--cor-primaria);
+    color: var(--cor-titulo);
 }
 
 .experiencia-descricao--mudou {
@@ -1168,7 +1240,7 @@ form textarea:focus {
 
 input::placeholder,
 textarea::placeholder {
-    color: #6B7280 !important;
+    color: var(--cor-placeholder) !important;
     font-style: italic;
 }
 
@@ -1188,6 +1260,7 @@ dialog {
     max-height: calc(100dvh - 2rem);
     overflow-y: auto;
     scrollbar-gutter: stable both-edges;
+    background-color: var(--cor-superficie);
     color: var(--cor-texto);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
@@ -1454,4 +1527,13 @@ footer address a:hover {
     .stepper-preavaliacao .etapa:focus-within::before {
         transform: none;
     }
+}
+
+:root[data-tema="escuro"] .navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+}
+
+:root[data-tema="escuro"] .btn-principal:hover,
+:root[data-tema="escuro"] .btn-principal:focus {
+    background-color: #07543A;
 }

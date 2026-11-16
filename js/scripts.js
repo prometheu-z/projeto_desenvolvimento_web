@@ -94,6 +94,8 @@ const AULAS_FALLBACK = [
 document.addEventListener('DOMContentLoaded', aoCarregar);
 
 function aoCarregar() {
+    configurarTema();
+
     const formulario = document.getElementById('form-cadastro');
 
     if (formulario) {
@@ -112,6 +114,54 @@ function aoCarregar() {
 
     if (document.getElementById('corpo-tabela')) {
         carregarTabela();
+    }
+}
+
+function configurarTema() {
+    const botao = document.querySelector('[data-alternar-tema]');
+
+    if (!botao) {
+        return;
+    }
+
+    let temaSalvo = null;
+
+    try {
+        temaSalvo = window.localStorage.getItem('academia-tema');
+    } catch (erro) {
+        console.warn('Não foi possível carregar a preferência de tema salva.', erro);
+    }
+
+    const temaInicial = temaSalvo === 'claro' || temaSalvo === 'escuro'
+        ? temaSalvo
+        : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'escuro' : 'claro';
+
+    aplicarTema(temaInicial, botao);
+
+    botao.addEventListener('click', () => {
+        const temaAtual = document.documentElement.dataset.tema;
+        const proximoTema = temaAtual === 'escuro' ? 'claro' : 'escuro';
+
+        aplicarTema(proximoTema, botao);
+
+        try {
+            window.localStorage.setItem('academia-tema', proximoTema);
+        } catch (erro) {
+            console.warn('Não foi possível salvar a preferência de tema.', erro);
+        }
+    });
+}
+
+function aplicarTema(tema, botao) {
+    const proximoTema = tema === 'escuro' ? 'claro' : 'escuro';
+    const logo = document.querySelector('.navbar-brand img');
+
+    document.documentElement.dataset.tema = tema;
+    botao.setAttribute('aria-label', `Ativar tema ${proximoTema}`);
+    botao.title = `Ativar tema ${proximoTema}`;
+
+    if (logo) {
+        logo.src = tema === 'escuro' ? 'img/logo_escuro.png' : 'img/logo.jpg';
     }
 }
 
