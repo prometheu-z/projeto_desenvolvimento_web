@@ -249,15 +249,8 @@ function formatarMoeda(valor) {
 }
 
 function rotuloPeriodoPlano(plano) {
-    if (plano.meses === 1) {
-        return '1 mês';
-    }
-
-    if (plano.meses === 12) {
-        return '12 meses · valor anual';
-    }
-
-    return `${plano.meses} meses`;
+    const quantidadeMeses = plano.meses === 1 ? 'mês' : 'meses';
+    return `${plano.nome} · ${plano.meses} ${quantidadeMeses}`;
 }
 
 function preencherPrecosDosPlanos() {
@@ -385,11 +378,13 @@ function calcularTotalPlano(formulario) {
     }
 
     const plano = PLANOS[planoSelecionado.value];
+    const mensalidade = plano.precoPorAtividade * atividades.length;
 
     return {
         plano,
         quantidadeAtividades: atividades.length,
-        total: plano.precoPorAtividade * plano.meses * atividades.length
+        mensalidade,
+        total: mensalidade * plano.meses
     };
 }
 
@@ -427,17 +422,17 @@ function atualizarTotalPlano() {
         return;
     }
 
-    const { plano, quantidadeAtividades, total } = calculo;
+    const { plano, quantidadeAtividades, mensalidade, total } = calculo;
     const rotuloAtividades = quantidadeAtividades === 1 ? 'atividade' : 'atividades';
 
-    valor.textContent = formatarMoeda(total);
+    valor.textContent = formatarMoeda(mensalidade);
 
     if (periodo) {
         periodo.hidden = false;
         periodo.textContent = rotuloPeriodoPlano(plano);
     }
 
-    detalhe.textContent = `${quantidadeAtividades} ${rotuloAtividades} × ${formatarMoeda(plano.precoPorAtividade)}/mês`;
+    detalhe.textContent = `${quantidadeAtividades} ${rotuloAtividades} × ${formatarMoeda(plano.precoPorAtividade)} /mês = ${formatarMoeda(mensalidade)}/mês. Total do período: ${formatarMoeda(total)}.`;
 }
 
 /* ------------------------- Campo de peso ------------------------- */
@@ -894,6 +889,7 @@ function coletarDados(formulario) {
         'Atividades': atividades.join(', '),
         'Plano': rotuloPlano,
         'Período do plano': calculoTotal ? rotuloPeriodoPlano(calculoTotal.plano) : '—',
+        'Mensalidade total': calculoTotal ? `${formatarMoeda(calculoTotal.mensalidade)}/mês` : '—',
         'Total do plano': calculoTotal ? formatarMoeda(calculoTotal.total) : '—',
         'Nível de experiência': nivelExperiencia ? nivelExperiencia.titulo : '',
         'Peso': peso ? formatarPeso(peso) : 'Não informado',
