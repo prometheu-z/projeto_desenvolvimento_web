@@ -105,7 +105,7 @@ body {
     color: var(--cor-texto);
 }
 
-/* REQ. 9 — EXEMPLO DE PSEUDOCLASSE: :focus-visible (foco visível por teclado). */
+/* REQ. 9 — EXEMPLO DE PSEUDOCLASSE: :focus-visible. */
 a:focus-visible,
 .btn:focus-visible,
 .form-check-input:focus-visible,
@@ -113,6 +113,18 @@ a:focus-visible,
 .navbar-toggler:focus-visible {
     outline: 3px solid var(--cor-secundaria);
     outline-offset: 2px;
+}
+
+/* REQ. 9: pseudoclasse de estado :checked. */
+.plano-radio:checked + .plano-label {
+    border-color: var(--cor-secundaria);
+    background-color: var(--cor-superficie-destaque);
+    box-shadow: 0 0 0 3px rgba(10, 117, 81, 0.16);
+}
+
+/* REQ. 9: pseudoclasse estrutural :nth-child(). */
+tbody tr:nth-child(even) td {
+    background-color: var(--cor-superficie-alternada);
 }
 
 /* Sobre fundos escuros, o anel de foco usa o verde-claro para manter contraste */
@@ -333,7 +345,7 @@ h3 {
     color: #FFFFFF;
 }
 
-/* REQ. 9 — EXEMPLO DE PSEUDOELEMENTO: ::after (linha decorativa após o título). */
+/* REQ. 9 — EXEMPLO DE PSEUDOELEMENTO: ::after . */
 section h2::after {
     content: "";
     display: block;
@@ -902,10 +914,7 @@ figure .img-padrao {
     font-weight: 600;
 }
 
-/* REQ. 9: pseudoclasse estrutural :nth-child(). */
-tbody tr:nth-child(even) td {
-    background-color: var(--cor-superficie-alternada);
-}
+
 
 table caption {
     caption-side: top;
@@ -1071,12 +1080,6 @@ form textarea:focus {
     border-color: var(--cor-secundaria);
 }
 
-/* REQ. 9: pseudoclasse de estado :checked. */
-.plano-radio:checked + .plano-label {
-    border-color: var(--cor-secundaria);
-    background-color: var(--cor-superficie-destaque);
-    box-shadow: 0 0 0 3px rgba(10, 117, 81, 0.16);
-}
 
 .plano-radio:focus-visible + .plano-label {
     outline: 3px solid var(--cor-secundaria);
